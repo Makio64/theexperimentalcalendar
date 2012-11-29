@@ -7,14 +7,14 @@ function initUI(){
 	//share option
 	$("#facebook a").click(function(e){
 		e.preventDefault();
-		window.open('http://www.facebook.com/sharer.php?u=theexperimentalcalendar.com&t=TheExperimentalCalendar',
+		window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href)+'&t='+encodeURIComponent(document.title),
 					'Share us on facebook',
 					'toolbar=0,status=0,width=548,height=325');
 		return false;
 	});
 	$("#twitter a").click(function(e){
 		e.preventDefault();
-		window.open('https://twitter.com/share?url=theexperimentalcalendar.com',
+		window.open('http://twitter.com/home?status='+encodeURIComponent('The experimental calendar ! ')+encodeURIComponent(location.href),
 					'Share us on facebook',
 					'toolbar=0,status=0,width=548,height=325');
 		
@@ -22,7 +22,9 @@ function initUI(){
 	});
 	$("#google a").click(function(e){
 		e.preventDefault();
-		//fuck that shit api >.<
+		window.open('https://plus.google.com/share?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),
+					'Share us on facebook',
+					'toolbar=0,status=0,width=548,height=325');
 		return false;
 	});
 }
