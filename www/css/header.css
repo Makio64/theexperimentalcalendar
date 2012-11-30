@@ -1,8 +1,8 @@
-body{background: #FFF;}
-header{width: 100%;}
+body{ background-color: #f7f7f7; }
+header{width: 100%;background-color: #fff;}
 header div.center{ width: 953px; margin:auto; height: 50px;}
 header h1 a{ display:block; width:144px; height: 50px;  text-indent: -9999px; }
-header h1 {float:left; width:144px; height: 50px; background: url('../img/logo_header.png') no-repeat center center; }
+header h1 {float:left; width:144px; height: 50px; background: url('../img/logo_header.png') no-repeat center center; padding-right: 20px; border-right: solid 1px #f1e6e0; }
 header ul{overflow: auto;float: right;}
 header li{float:right; list-style: none;}
 header li a{display:block; height: 50px; width: 50px; text-indent: -9999px;border-right: solid 1px #f1e6e0;transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -o-transition: all .3s; }
@@ -12,5 +12,3 @@ header li#twitter a { background: url('../img/twitter.png') no-repeat;  }
 header li#twitter a:hover{ background: url('../img/twitter_over.png') no-repeat; }
 header li#google a { background: url('../img/google.png') no-repeat;  }
 header li#google a:hover { background: url('../img/google_over.png') no-repeat; }
-section{width: 953px; margin:auto;}
-footer{width: 100%;}

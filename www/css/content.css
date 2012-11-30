@@ -1,0 +1,64 @@
+@font-face { font-family: "HelveticaNeueLTStd-Th"; src: url('./fonts/helveticaneueltstd-th.eot'); src: url('./fonts/helveticaneueltstd-th.eot?#iefix') format('eot'), url('./fonts/helveticaneueltstd-th.woff') format('woff'), url('./fonts/helveticaneueltstd-th.otf') format('opentype'); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: "QuicksandBookOblique-Regular"; src: url('./fonts/quicksand_book_oblique.eot'); src: url('./fonts/quicksand_book_oblique.eot?#iefix') format('eot'), url('./fonts/quicksand_book_oblique.woff') format('woff'), url('./fonts/quicksand_book_oblique.otf') format('opentype'); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: "QuicksandBold-Regular"; src: url('./fonts/quicksand_bold.eot'); src: url('./fonts/quicksand_bold.eot?#iefix') format('eot'), url('./fonts/quicksand_bold.woff') format('woff'), url('./fonts/quicksand_bold.otf') format('opentype'); font-weight: normal; font-style: normal; }
+
+.hidden { display: none; }
+
+.clear { clear: both; }
+
+#animation { position: absolute; width: 100%; height: 135px; background-color: #071846; background-image: url("../img/halo.png"); background-repeat: no-repeat; background-position: 50% 85px; }
+
+#home { position: absolute; left: 50%; width: 875px; margin-left: -437px; }
+#home > .separator { margin-top: 12px; }
+#home > .separator img { display: block; margin-left: auto; margin-right: auto; }
+
+#presentation { width: 100%; margin-top: 55px; margin-left: auto; margin-right: auto; }
+#presentation .logo { width: 520px; margin-left: auto; margin-right: auto; }
+#presentation .logo h2 { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; margin-top: 10px; margin-left: 50px; }
+#presentation .logo h2 strong { color: #e71b1b; font-weight: normal; }
+#presentation .logo .arrow { display: block; margin-left: 260px; }
+#presentation #baseline { color: black; width: 850px; height: 60px; font: normal 54px "HelveticaNeueLTStd-Th"; letter-spacing: 8px; background-color: white; padding-top: 10px; text-align: center; margin-top: 10px; margin-left: auto; margin-right: auto; }
+#presentation #baseline strong { color: #969696; font-weight: normal; }
+
+#calendar { margin-top: 10px; }
+#calendar .entry { float: left; background-color: #071846; width: 175px; height: 175px; }
+#calendar .entry .number { position: absolute; width: 20px; font: normal 36px "QuicksandBookOblique-Regular"; text-align: center; margin-left: 75px; }
+#calendar .entry .number span { margin-left: 2px; }
+#calendar .entry .number .separator { margin-top: 2px; width: 20px; height: 1px; }
+#calendar .entry .number.pos0 span { margin-left: 8px; }
+#calendar .entry .number.pos1 span { margin-left: -1px; }
+#calendar .entry .number.pos2 span { margin-left: -3px; }
+#calendar .entry .number.pos3 span { margin-left: -7px; }
+#calendar .entry .waiter { position: absolute; width: 175px; height: 175px; }
+#calendar .entry .waiter .flocon { z-index: 0; position: absolute; display: block; width: 111px; height: 110px; margin-top: 30px; margin-left: 30px; }
+#calendar .entry .waiter .number { color: #245aff; margin-top: 62px; }
+#calendar .entry .waiter .number .separator { background-color: #245aff; }
+#calendar .entry .project { position: absolute; width: 175px; height: 175px; }
+#calendar .entry .project .preview { position: absolute; }
+#calendar .entry .project .tooltip { display: none; position: absolute; text-align: center; font: normal 10px/30px "QuicksandBold-Regular"; color: #d81919; background-color: white; width: 115px; height: 30px; margin-left: 30px; margin-top: 75px; }
+#calendar .entry .project .curtain { display: block; position: absolute; width: 175px; height: 175px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 30, 30, 0.8)), color-stop(100%, #a81414)); background-image: -webkit-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: -moz-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: -o-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: linear-gradient(rgba(255, 30, 30, 0.8), #a81414); filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90); opacity: 0.9; color: white; }
+#calendar .entry .project .curtain .number { margin-top: 40px; }
+#calendar .entry .project .curtain .number .separator { background-color: white; }
+#calendar .entry .project .curtain .description { margin-top: 100px; text-align: center; font: normal 10px "QuicksandBold-Regular"; }
+#calendar .entry .project .icon { margin-top: 30px; margin-left: 80px; }
+#calendar .entry .project:hover .tooltip { display: block; }
+#calendar .entry .project:hover .curtain { display: none; }
+
+#creators { margin-bottom: 100px; }
+#creators > .title { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; width: 250px; height: 40px; text-align: center; background-color: white; padding-top: 10px; margin-top: 10px; margin-left: auto; margin-right: auto; }
+#creators > .title strong { color: #e71b1b; font-weight: normal; }
+#creators .entries { margin-top: 10px; }
+#creators .entries .entry { float: left; width: 175px; height: 355px; }
+#creators .entries .entry .avatar { width: 175px; height: 175px; }
+#creators .entries .entry .content { margin-top: -6px; }
+#creators .entries .entry .content .bg { position: absolute; }
+#creators .entries .entry .content .description { position: absolute; width: 175px; margin-top: 20px; text-align: center; }
+#creators .entries .entry .content .description .title { color: #d81919; font: normal 10px "QuicksandBold-Regular"; }
+#creators .entries .entry .content .description .title h3 { font-weight: normal; }
+#creators .entries .entry .content .description .title span { display: block; margin-top: 7px; }
+#creators .entries .entry .content .description .icons { margin-top: 5px; margin-left: 83px; }
+#creators .entries .entry .content .description .icons img { display: block; }
+#creators .entries .entry .content .description .icons .wave { margin-top: -13px; margin-left: -6px; }
+#creators .entries .entry .content .description .description { width: 130px; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-left: 22px; margin-right: auto; }

@@ -1,0 +1,247 @@
+@import "compass/css3"
+
++font-face("HelveticaNeueLTStd-Th", font-files("helveticaneueltstd-th.woff", woff, "helveticaneueltstd-th.otf", opentype), "helveticaneueltstd-th.eot", normal, normal)
++font-face("QuicksandBookOblique-Regular", font-files("quicksand_book_oblique.woff", woff, "quicksand_book_oblique.otf", opentype), "quicksand_book_oblique.eot", normal, normal)
++font-face("QuicksandBold-Regular", font-files("quicksand_bold.woff", woff, "quicksand_bold.otf", opentype), "quicksand_bold.eot", normal, normal)
+
+// OP Vars
+$entrySize: 175px
+
+// OP Mixins
+=basicTitle()
+	color: #969696
+	font: normal 27px "HelveticaNeueLTStd-Th"
+	letter-spacing: 2px
+	strong
+		color: #e71b1b
+		font-weight: normal
+
+.hidden
+	display: none
+
+.clear
+	clear: both
+
+#animation
+	position: absolute
+	width: 100%
+	height: 135px
+	background: 
+		color: #071846
+		image: url( "../img/halo.png" )
+		repeat: no-repeat
+		position: 50% 85px
+
+#home
+	position: absolute
+	left: 50%
+	width: 875px
+	margin-left: -437px
+	&>.separator
+		margin-top: 12px
+		img
+			display: block
+			margin:
+				left: auto
+				right: auto
+
+#presentation
+	width: 100%
+	margin:
+		top: 55px
+		left: auto
+		right: auto
+	.logo
+		width: 520px
+		margin:
+			left: auto
+			right: auto
+		h2
+			+basicTitle()
+			margin:
+				top: 10px
+				left: 50px	
+		.arrow
+			display: block
+			margin:
+				left: 260px
+
+	#baseline
+		color: #000
+		width: 850px
+		height: 60px
+		font: normal 54px "HelveticaNeueLTStd-Th"
+		letter-spacing: 8px
+		background-color: #fff
+		padding-top: 10px
+		text-align: center
+		margin:
+			top: 10px
+			left: auto
+			right: auto
+		strong
+			color: #969696
+			font-weight: normal
+
+#calendar
+	margin-top: 10px
+	.entry
+		float: left
+		background-color: #071846
+		width: $entrySize
+		height: $entrySize
+
+		.number
+			position: absolute
+			width: 20px
+			font: normal 36px "QuicksandBookOblique-Regular"
+			text-align: center
+			margin-left: 75px
+			span
+				margin-left: 2px
+			.separator
+				margin-top: 2px
+				width: 20px
+				height: 1px
+
+			&.pos0
+				span
+					margin-left: 8px
+
+			&.pos1
+				span
+					margin-left: -1px
+
+			&.pos2
+				span
+					margin-left: -3px
+
+			&.pos3
+				span
+					margin-left: -7px
+
+		.waiter
+			position: absolute
+			width: $entrySize
+			height: $entrySize
+			.flocon
+				z-index: 0
+				position: absolute
+				display: block
+				width: 111px
+				height: 110px
+				margin:
+					top: 30px
+					left: 30px
+			.number
+				color: #245aff
+				margin-top: 62px				
+				.separator
+					background-color: #245aff
+
+		.project
+			position: absolute
+			width: $entrySize
+			height: $entrySize
+			.preview
+				position: absolute
+			.tooltip
+				display: none
+				position: absolute
+				text-align: center
+				font: normal 10px/30px "QuicksandBold-Regular"
+				color: #d81919
+				background-color: #fff
+				width: 115px
+				height: 30px
+				margin:
+					left: 30px
+					top: 75px
+			.curtain
+				display: block
+				position: absolute
+				width: $entrySize
+				height: $entrySize
+				+background-image( linear-gradient( rgba( 255, 30, 30, .8 ), #a81414 ) )
+				+opacity( .9 )
+				color: #fff
+				.number
+					margin-top: 40px
+					.separator
+						background-color: #fff
+				.description
+					margin-top: 100px
+					text-align: center
+					font: normal 10px "QuicksandBold-Regular"
+
+			.icon
+				margin:
+					top: 30px
+					left: 80px
+
+			&:hover
+				.tooltip
+					display: block
+				.curtain
+					display: none
+
+#creators
+	margin-bottom: 100px
+	&>.title
+		+basicTitle()
+		width: 250px
+		height: 40px
+		text-align: center
+		background-color: #fff
+		padding-top: 10px
+		margin:
+			top: 10px
+			left: auto
+			right: auto
+
+	.entries
+		margin-top: 10px
+		.entry
+			float: left
+			width: $entrySize
+			height: 355px
+			.avatar
+				width: $entrySize
+				height: $entrySize
+			.content
+				margin-top: -6px
+				.bg
+					position: absolute
+				.description
+					position: absolute
+					width: $entrySize
+					margin-top: 20px
+					text-align: center
+					.title
+						color: #d81919
+						font: normal 10px "QuicksandBold-Regular"
+						h3
+							font-weight: normal
+						span
+							display: block
+							margin-top: 7px
+					.icons
+						margin:
+							top: 5px
+							left: 83px
+						img
+							display: block
+						.wave
+							margin:
+								top: -13px
+								left: -6px
+					.description
+						width: 130px
+						font: normal 10px "QuicksandBold-Regular"
+						color: #494949
+						margin:
+							left: 22px
+							right: auto
+
+					
+					
