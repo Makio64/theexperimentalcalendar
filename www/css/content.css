@@ -62,3 +62,5 @@
 #creators .entries .entry .content .description .icons img { display: block; }
 #creators .entries .entry .content .description .icons .wave { margin-top: -13px; margin-left: -6px; }
 #creators .entries .entry .content .description .description { width: 130px; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-top: 10px; margin-left: 22px; margin-right: auto; }
+
+@media screen and (max-width: 768px) { body { background: red; } }
