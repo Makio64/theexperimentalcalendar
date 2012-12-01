@@ -19,7 +19,7 @@
 #presentation .logo h2 { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; margin-top: 10px; margin-left: 50px; }
 #presentation .logo h2 strong { color: #e71b1b; font-weight: normal; }
 #presentation .logo .arrow { display: block; margin-left: 260px; }
-#presentation #baseline { color: black; width: 850px; height: 60px; font: normal 54px "HelveticaNeueLTStd-Th"; letter-spacing: 8px; background-color: white; padding-top: 10px; text-align: center; margin-top: 10px; margin-left: auto; margin-right: auto; }
+#presentation #baseline { color: black; width: 850px; height: 55px; font: normal 54px "HelveticaNeueLTStd-Th"; letter-spacing: 8px; background-color: white; padding-top: 5px; text-align: center; margin-top: 10px; margin-left: auto; margin-right: auto; }
 #presentation #baseline strong { color: #969696; font-weight: normal; }
 
 #calendar { margin-top: 10px; }
@@ -47,7 +47,7 @@
 #calendar .entry .project:hover .curtain { display: none; }
 
 #creators { margin-bottom: 100px; }
-#creators > .title { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; width: 250px; height: 40px; text-align: center; background-color: white; padding-top: 10px; margin-top: 10px; margin-left: auto; margin-right: auto; }
+#creators > .title { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; width: 240px; height: 32px; text-align: center; background-color: white; padding-top: 7px; margin-top: 10px; margin-left: auto; margin-right: auto; }
 #creators > .title strong { color: #e71b1b; font-weight: normal; }
 #creators .entries { margin-top: 10px; }
 #creators .entries .entry { float: left; width: 175px; height: 355px; }
@@ -58,7 +58,7 @@
 #creators .entries .entry .content .description .title { color: #d81919; font: normal 10px "QuicksandBold-Regular"; }
 #creators .entries .entry .content .description .title h3 { font-weight: normal; }
 #creators .entries .entry .content .description .title span { display: block; margin-top: 7px; }
-#creators .entries .entry .content .description .icons { margin-top: 5px; margin-left: 83px; }
+#creators .entries .entry .content .description .icons { margin-top: 3px; margin-left: 83px; }
 #creators .entries .entry .content .description .icons img { display: block; }
 #creators .entries .entry .content .description .icons .wave { margin-top: -13px; margin-left: -6px; }
-#creators .entries .entry .content .description .description { width: 130px; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-left: 22px; margin-right: auto; }
+#creators .entries .entry .content .description .description { width: 130px; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-top: 10px; margin-left: 22px; margin-right: auto; }
