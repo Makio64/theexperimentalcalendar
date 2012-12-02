@@ -12,3 +12,7 @@ header li#twitter a { background: url('../img/twitter.png') no-repeat;  }
 header li#twitter a:hover{ background: url('../img/twitter_over.png') no-repeat; }
 header li#google a { background: url('../img/google.png') no-repeat;  }
 header li#google a:hover { background: url('../img/google_over.png') no-repeat; }
+
+@media only screen and (max-width: 480px)	{
+	header h1 {border-right: none 0px #f1e6e0; }
+}
