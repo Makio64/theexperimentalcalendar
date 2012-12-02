@@ -62,6 +62,7 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 #creators .entries .entry .content .description { position: absolute; width: 175px; margin-top: 20px; text-align: center; }
 #creators .entries .entry .content .description .title { color: #d81919; font: normal 10px "QuicksandBold-Regular"; }
 #creators .entries .entry .content .description .title h3 { font-weight: normal; text-transform: uppercase; }
+#creators .entries .entry .content .description .title h3 a { color: #d81919; }
 #creators .entries .entry .content .description .title span { display: block; margin-top: 7px; }
 #creators .entries .entry .content .description .icons { margin-top: 3px; margin-left: 83px; }
 #creators .entries .entry .content .description .icons img { display: block; }
