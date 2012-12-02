@@ -1,5 +1,5 @@
 body{ background-color: #f7f7f7; }
-header{width: 100%;background-color: #fff;}
+header{position:absolute;top:0;width: 100%;background-color: #fff;z-index:1;}
 header div.center{ width: 95%; margin:auto; height: 50px;}
 header h1 a{ display:block; width:144px; height: 50px;  text-indent: -9999px; }
 header h1 {float:left; width:144px; height: 50px; background: url('../img/logo_header.png') no-repeat center center; padding-right: 20px; border-right: solid 1px #f1e6e0; }

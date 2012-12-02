@@ -4,6 +4,8 @@
 
 @font-face { font-family: "QuicksandBold-Regular"; src: url('./fonts/quicksand_bold.eot'); src: url('./fonts/quicksand_bold.eot?#iefix') format('eot'), url('./fonts/quicksand_bold.woff') format('woff'), url('./fonts/quicksand_bold.otf') format('opentype'); font-weight: normal; font-style: normal; }
 
+iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%; width: 100%; z-index: 0; }
+
 .hidden { display: none; }
 
 .clear { clear: both; }
@@ -14,8 +16,8 @@
 #home > .separator { margin-top: 12px; }
 #home > .separator img { display: block; margin-left: auto; margin-right: auto; }
 
-#presentation { width: 100%; position: relative; margin-top: 55px; margin-left: auto; margin-right: auto; }
-#presentation .logo { width: 520px; margin: 0 auto; }
+#presentation { width: 100%; position: relative; margin-top: 50px; margin-left: auto; margin-right: auto; }
+#presentation .logo { width: 520px; margin: 50px auto 0 auto; }
 #presentation .logo img.logo { width: 100%; max-width: 100%; }
 #presentation .logo h2 { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; margin-top: 10px; margin-left: 50px; }
 #presentation .logo h2 strong { color: #e71b1b; font-weight: normal; }
