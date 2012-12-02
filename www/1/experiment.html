@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 	<!-- this code is an incredible mess, sorry :) -->
+  <!--
+    - Credits-
+      Music by THE ROCKSTARS: http://soundcloud.com/the_rockstars/glee-welcome-christmas-the-rockstars-remix
+      Made With Three.js: https://github.com/mrdoob/three.js
+  -->
 	<head>
 		<title>Welcome Christmas</title>
 		<meta charset="utf-8">
@@ -128,8 +133,8 @@
 		<script src="js/libs/stats.min.js"></script>
 
 		<script>
-
-			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+      console.log(jQuery.browser);
+			if ( !jQuery.browser.chrome ) Detector.addGetWebGLMessage();
 
 			var CUBE_NUMBER = 100;
       var CUBE_SIZE = 1000;
