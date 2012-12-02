@@ -25,7 +25,7 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 #presentation #baseline { color: black; width: 850px; height: 55px; font: normal 54px "HelveticaNeueLTStd-Th"; letter-spacing: 8px; background-color: white; padding: 5px 0 12px 0; text-align: center; margin-top: 10px; margin-left: auto; margin-right: auto; }
 #presentation #baseline strong { color: #969696; font-weight: normal; }
 
-#calendar { margin-top: 10px; }
+#calendar { margin-top: 10px; background-color: #071846; }
 #calendar:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 #calendar .entry { float: left; background-color: #071846; width: 175px; height: 175px; }
 #calendar .entry .number { position: absolute; width: 20px; font: normal 36px "QuicksandBookOblique-Regular"; text-align: center; margin-left: 75px; }
