@@ -57,7 +57,6 @@
         border-radius:50%;
         text-align: center;
         border: dashed 1px black;
-        /*background-color: rgba(0,0,0,0);*/
         -moz-box-sizing: border-box;
           box-sizing: border-box;
         -webkit-perspective: 300;
@@ -139,7 +138,7 @@
 	    var camera, scene, renderer, stats;
 	    var sceneCube, cameraCube, mesh, textureCube;
 	    var snowSystemGeometry, cloudSystemGeometry;
-	    var composerScene, composer;
+	    var composerScene, composer, renderTargetParameters;
 	    var uniforms;
 	    var control;
 	    var analyser;
@@ -224,6 +223,10 @@
       function onWindowResize(){
           camera.aspect = window.innerWidth / window.innerHeight;
           camera.updateProjectionMatrix();
+          cameraCube.aspect = window.innerWidth / window.innerHeight;
+          cameraCube.updateProjectionMatrix();
+
+          composer.reset( new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, renderTargetParameters));
 
           renderer.setSize( window.innerWidth, window.innerHeight );
       }
@@ -287,7 +290,7 @@
 	    }
 
 	    function initPostprocessing () {
-	    	var renderTargetParameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat, stencilBuffer: true };
+	    	renderTargetParameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat, stencilBuffer: true };
 
 			  var renderCubeMap = new THREE.RenderPass(sceneCube, cameraCube);
 			  var renderScene = new THREE.RenderPass(scene, camera);
