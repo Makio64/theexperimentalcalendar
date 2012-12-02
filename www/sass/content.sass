@@ -33,31 +33,31 @@ $entrySize: 175px
 		position: 50% 85px
 
 #home
-	position: absolute
-	left: 50%
 	width: 875px
-	margin-left: -437px
+	margin: 0 auto
 	&>.separator
 		margin-top: 12px
 		img
 			display: block
-			width: 100%
-			max-width: 100%
 			margin:
 				left: auto
 				right: auto
 
 #presentation
 	width: 100%
+	position: relative
 	margin:
 		top: 55px
 		left: auto
 		right: auto
 	.logo
 		width: 520px
-		margin:
-			left: auto
-			right: auto
+		margin: 0 auto
+
+		img.logo
+			width: 100%
+			max-width: 100%
+
 		h2
 			+basicTitle()
 			margin:
@@ -87,6 +87,14 @@ $entrySize: 175px
 
 #calendar
 	margin-top: 10px
+
+	&:after
+		content: "."
+		display: block
+		height: 0
+		clear: both
+		visibility: hidden
+
 	.entry
 		float: left
 		background-color: #071846
@@ -189,6 +197,15 @@ $entrySize: 175px
 
 #creators
 	margin-bottom: 100px
+
+	&:after
+		content: "."
+		display: block
+		height: 0
+		clear: both
+		visibility: hidden
+
+
 	&>.title
 		+basicTitle()
 		width: 240px
@@ -249,10 +266,91 @@ $entrySize: 175px
 	
 
 //MediaQueries
-@media screen and (max-width: 768px)
-	body
-		background: red
-	#presentation #baseline
-		font-size : 44px
-	#home
 
+
+@media screen and (min-width: 480px) and (max-width: 768px)
+	#home
+		width: 525px
+	#presentation #baseline
+		font-size : 25px
+		width: 500px
+		height: 40px
+		padding: 15px 0 0 0
+
+@media screen and (min-width: 768px)
+	#presentation #baseline
+		font-size : 37px
+		width: 670px
+		height: 50px
+		padding: 15px 0 0 0
+	#home
+		width: 700px
+
+@media screen and (min-width: 875px)
+	#presentation #baseline
+		width: 850px
+		height: 55px
+		font: normal 54px "HelveticaNeueLTStd-Th"
+		padding: 5px 0 0 0
+	#home
+		width: 875px
+	
+@media only screen and (max-width: 480px)	
+	#presentation
+		.logo
+			width: 320px
+			h2
+				text-align: center
+				font-size: 23px
+				margin: 0 auto
+			.arrow
+				margin: 0 auto
+		#baseline
+			display: none
+	#home
+		width: 300px
+
+		#calendar
+			.entry
+				width: 50%
+				height: 150px
+				a
+					display: block
+					width: 100%
+
+					.project
+
+						width: 150px
+						height: 150px
+
+						.preview
+							width: 100%
+							max-width: 100%
+						.curtain
+							width: 150px
+							height: 150px
+
+							.number
+								margin: 30px 0 0 65px
+
+							.description
+								margin: 85px 0 0 0
+							.icon
+								margin-left: 70px
+						.tooltip
+							margin-left: 17px
+							margin-top: 65px
+
+				.waiter 
+					.flocon
+						margin-left: 18px
+						margin-top: 18px
+					.number
+						margin-top: 55px
+						margin-left: 60px
+
+
+		#creators 
+			.entries 
+				.entry
+					width: 150px

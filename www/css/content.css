@@ -10,12 +10,13 @@
 
 #animation { position: absolute; width: 100%; height: 135px; background-color: #071846; background-image: url("../img/halo.png"); background-repeat: no-repeat; background-position: 50% 85px; }
 
-#home { position: absolute; left: 50%; width: 875px; margin-left: -437px; }
+#home { width: 875px; margin: 0 auto; }
 #home > .separator { margin-top: 12px; }
-#home > .separator img { display: block; width: 100%; max-width: 100%; margin-left: auto; margin-right: auto; }
+#home > .separator img { display: block; margin-left: auto; margin-right: auto; }
 
-#presentation { width: 100%; margin-top: 55px; margin-left: auto; margin-right: auto; }
-#presentation .logo { width: 520px; margin-left: auto; margin-right: auto; }
+#presentation { width: 100%; position: relative; margin-top: 55px; margin-left: auto; margin-right: auto; }
+#presentation .logo { width: 520px; margin: 0 auto; }
+#presentation .logo img.logo { width: 100%; max-width: 100%; }
 #presentation .logo h2 { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; margin-top: 10px; margin-left: 50px; }
 #presentation .logo h2 strong { color: #e71b1b; font-weight: normal; }
 #presentation .logo .arrow { display: block; margin-left: 260px; }
@@ -23,6 +24,7 @@
 #presentation #baseline strong { color: #969696; font-weight: normal; }
 
 #calendar { margin-top: 10px; }
+#calendar:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 #calendar .entry { float: left; background-color: #071846; width: 175px; height: 175px; }
 #calendar .entry .number { position: absolute; width: 20px; font: normal 36px "QuicksandBookOblique-Regular"; text-align: center; margin-left: 75px; }
 #calendar .entry .number span { margin-left: 2px; }
@@ -47,6 +49,7 @@
 #calendar .entry .project:hover .curtain { display: none; }
 
 #creators { margin-bottom: 100px; }
+#creators:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 #creators > .title { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; width: 240px; height: 32px; text-align: center; background-color: white; padding-top: 7px; margin-top: 10px; margin-left: auto; margin-right: auto; }
 #creators > .title strong { color: #e71b1b; font-weight: normal; }
 #creators .entries { margin-top: 10px; }
@@ -63,5 +66,26 @@
 #creators .entries .entry .content .description .icons .wave { margin-top: -13px; margin-left: -6px; }
 #creators .entries .entry .content .description .description { width: 130px; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-top: 10px; margin-left: 22px; margin-right: auto; }
 
-@media screen and (max-width: 768px) { body { background: red; }
-  #presentation #baseline { font-size: 44px; } }
+@media screen and (min-width: 480px) and (max-width: 768px) { #home { width: 525px; }
+  #presentation #baseline { font-size: 25px; width: 500px; height: 40px; padding: 15px 0 0 0; } }
+@media screen and (min-width: 768px) { #presentation #baseline { font-size: 37px; width: 670px; height: 50px; padding: 15px 0 0 0; }
+  #home { width: 700px; } }
+@media screen and (min-width: 875px) { #presentation #baseline { width: 850px; height: 55px; font: normal 54px "HelveticaNeueLTStd-Th"; padding: 5px 0 0 0; }
+  #home { width: 875px; } }
+@media only screen and (max-width: 480px) { #presentation .logo { width: 320px; }
+  #presentation .logo h2 { text-align: center; font-size: 23px; margin: 0 auto; }
+  #presentation .logo .arrow { margin: 0 auto; }
+  #presentation #baseline { display: none; }
+  #home { width: 300px; }
+  #home #calendar .entry { width: 50%; height: 150px; }
+  #home #calendar .entry a { display: block; width: 100%; }
+  #home #calendar .entry a .project { width: 150px; height: 150px; }
+  #home #calendar .entry a .project .preview { width: 100%; max-width: 100%; }
+  #home #calendar .entry a .project .curtain { width: 150px; height: 150px; }
+  #home #calendar .entry a .project .curtain .number { margin: 30px 0 0 65px; }
+  #home #calendar .entry a .project .curtain .description { margin: 85px 0 0 0; }
+  #home #calendar .entry a .project .curtain .icon { margin-left: 70px; }
+  #home #calendar .entry a .project .tooltip { margin-left: 17px; margin-top: 65px; }
+  #home #calendar .entry .waiter .flocon { margin-left: 18px; margin-top: 18px; }
+  #home #calendar .entry .waiter .number { margin-top: 55px; margin-left: 60px; }
+  #home #creators .entries .entry { width: 150px; } }
