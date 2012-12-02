@@ -15,11 +15,13 @@ header li#google a:hover { background: url('../img/google_over.png') no-repeat; 
 
 
 header h2{
+  margin:0 0 0 20px;
   float: left;
   text-transform : uppercase;
   color: #E71B1B;
   line-height: 50px;
-  font-family: "HelveticaNeueLTStd-Th", Arial, helvetica, sans-serif;
+  font-size: 0.6em;
+  font-family: Arial, helvetica, sans-serif;
   letter-spacing: 2px;
 }
 
