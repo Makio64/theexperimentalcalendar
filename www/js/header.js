@@ -5,6 +5,7 @@ jQuery(document).ready(function($) {
 
 function initUI(){
 	//share option
+	var description = document.getElementsByName('description')[0].getAttribute('content');
 	$("#facebook a").click(function(e){
 		e.preventDefault();
 		window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href)+'&t='+encodeURIComponent(document.title),
@@ -14,7 +15,7 @@ function initUI(){
 	});
 	$("#twitter a").click(function(e){
 		e.preventDefault();
-		window.open('http://twitter.com/home?status='+encodeURIComponent('The experimental calendar ! ')+encodeURIComponent(location.href),
+		window.open('http://twitter.com/home?status='+encodeURIComponent(description)+' '+encodeURIComponent(location.href),
 					'Share us on facebook',
 					'toolbar=0,status=0,width=548,height=325');
 		
