@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- this code is an incredible mess, sorry :) -->
+	<head>
+		<title>Welcome Christmas</title>
+		<meta charset="utf-8">
+    <meta name="author" content="Damien Mortini">
+    <meta name="description" content="Welcome Christmas experiment made for http://christmasexperiments.com/">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+      @font-face{
+        font-family: 'DroidSerifItalic';
+        src: url('./fonts/DroidSerif-Italic-webfont.woff') format('woff'), 
+               url('./fonts/DroidSerif-Italic-webfont.ttf') format('truetype');
+      }
+
+      @font-face{
+        font-family: 'DroidSerifBoldItalic';
+        src: url('./fonts/DroidSerif-BoldItalic-webfont.woff') format('woff'), 
+               url('./fonts/DroidSerif-BoldItalic-webfont.ttf') format('truetype');
+      }
+
+      body {
+      	background-color: #000;
+      	margin: 0px;
+      	overflow: hidden;
+        font-family: 'DroidSerifBoldItalic';
+        font-size: .95em;
+      }
+      p {
+        margin:0;
+      }
+      .popinContainer {
+        display:block;
+        position:absolute;
+        top:50%;
+        left:50%;
+        /*background-color: red;*/
+        width:180px;
+        height:180px;
+        margin-top: -90px;
+        margin-left: -90px;
+        /*border-radius:90px;*/
+        -webkit-perspective: 300;
+          -moz-perspective: 300; 
+            -ms-perspective: 300; 
+              perspective: 300;
+        -webkit-transition: -webkit-transform, opacity 0.4s, 0.2s ease-in-out; 
+           -moz-transition: -moz-transform, opacity 0.4s, 0.2s ease-out; 
+             -o-transition: -ms-transform, opacity 0.4s, 0.2s ease-out; 
+                transition: transform, opacity 0.4s, 0.2s ease-out;
+      }
+      .popin {
+        position:absolute;
+        width:100%;
+        height:100%;
+        border-radius:50%;
+        text-align: center;
+        border: dashed 1px black;
+        /*background-color: rgba(0,0,0,0);*/
+        -moz-box-sizing: border-box;
+          box-sizing: border-box;
+        -webkit-perspective: 300;
+          -moz-perspective: 300; 
+            -ms-perspective: 300; 
+              perspective: 300;
+        -webkit-transition: -webkit-transform, opacity 0.4s, 0.2s ease-in-out; 
+           -moz-transition: -moz-transform, opacity 0.4s, 0.2s ease-out; 
+             -o-transition: -ms-transform, opacity 0.4s, 0.2s ease-out; 
+                transition: transform, opacity 0.4s, 0.2s ease-out;
+      }
+      .icon {
+        display: inline-block;
+        width:100px;
+        height:100px;
+        margin:10px 0 0 0;
+      }
+      .hidden {
+        opacity: 0;
+        -webkit-transform: rotateX(90deg);  -webkit-transform-style: preserve-3d;
+            -moz-transform: rotateX(90deg);     -moz-transform-style: preserve-3d;
+              -ms-transform: rotateX(90deg);      -ms-transform-style: preserve-3d;
+                transform: rotateX(90deg);          transform-style: preserve-3d;
+      }
+      #start{
+        font-size: 3em;
+        padding-top: 65px;
+      }
+      .baseline {
+        margin-top: -.4em;
+        line-height: 1.4em;
+      }
+      .button {
+        cursor: pointer;
+      }
+      .button:hover {
+        text-decoration: underline;
+      }
+		</style>
+	</head>
+	<body>
+    <div class="popinContainer">
+      <div class="popin" id="volume">
+        <p class="icon">  
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+              <path d="M91.75,61c0-8.09-2.284-11.903-9.75-14.042v-4.596c0-8.745-3.569-16.658-9.309-22.446c0.101-0.09,0.203-0.177,0.293-0.283  c1.07-1.265,0.913-3.158-0.353-4.228c-6.56-5.551-14.433-8.485-22.767-8.485c-8.547,0-16.672,3.049-23.496,8.817  c-1.266,1.069-1.424,2.962-0.354,4.228c0.047,0.056,0.106,0.096,0.156,0.148C20.514,25.914,17,33.793,17,42.467v4.51  C9.634,49.137,7.25,52.935,7.25,61c0,8.359,3.611,13.175,10.75,14.415v1.335c0,2.348,1.903,4.25,4.25,4.25h0.5  c2.347,0,4.25-1.902,4.25-4.25v-31.5c0-2.348-1.903-4.25-4.25-4.25h-0.5c-0.073,0-0.14,0.018-0.212,0.021  c0.76-14.636,12.998-26.318,27.817-26.318c14.854,0,26.443,11.64,27.112,26.319C76.895,41.018,76.824,41,76.75,41h-0.5  C73.902,41,72,42.902,72,45.25v31.5c0,1.909,1.267,3.506,3,4.042V94h2V80.975c2.229-0.132,4-1.963,4-4.225v-1.323  C88.262,74.204,91.75,69.384,91.75,61z"></path>
+            </svg> 
+        </p>
+        <p class='baseline'>Pump up the volume</br>It's Christmas !</p>
+      </div>
+      <div class="popin hidden" id="start">
+        <p class='button'>Start</p>
+      </div>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script src="three.min.js"></script>
+
+    <script src="js/postprocessing/EffectComposer.js"></script>
+		<script src="js/postprocessing/RenderPass.js"></script>
+		<script src="js/postprocessing/ShaderPass.js"></script>
+		<script src="js/postprocessing/MaskPass.js"></script>
+
+		<script src="js/shaders/CopyShader.js"></script>
+		<script src="js/shaders/EzeckielShader.js"></script>
+
+		<script src="js/controls/TrackballControls.js"></script>
+		<script src="js/Detector.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var CUBE_NUMBER = 100;
+      var CUBE_SIZE = 1000;
+      var SCENE_SIZE = 20000;
+
+	    var camera, scene, renderer, stats;
+	    var sceneCube, cameraCube, mesh, textureCube;
+	    var snowSystemGeometry, cloudSystemGeometry;
+	    var composerScene, composer;
+	    var uniforms;
+	    var control;
+	    var analyser;
+	    var date;
+      var audio;
+
+	    init();
+	    animate();
+
+	    function init() {
+	    	date = Date.now();
+        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 100000 );
+        camera.position.z = 10000;
+
+        cameraCube = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100000 );
+
+        scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2( 0xffffff, 0.0001 )
+        sceneCube = new THREE.Scene();
+
+        var r = "textures/cube/";
+
+				var urls = [ r + "px.jpg", r + "nx.jpg",
+							 r + "py.jpg", r + "ny.jpg",
+							 r + "pz.jpg", r + "nz.jpg" ];
+
+				textureCube = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
+
+        var cubeMaterial = new THREE.MeshLambertMaterial({ color: 0x444444});
+        var geometry = new THREE.Geometry();
+        var m = new THREE.Matrix4();
+        for (var i = 0; i < CUBE_NUMBER; i++) {
+        	var cubeGeometry = new THREE.CubeGeometry( (.5 + Math.random() * .5) * CUBE_SIZE, SCENE_SIZE, (.5 + Math.random() * .5) * CUBE_SIZE );
+        	m.makeTranslation(Math.random() * SCENE_SIZE - SCENE_SIZE * .5, 0, Math.random() * SCENE_SIZE - SCENE_SIZE * .5);
+        	cubeGeometry.applyMatrix(m);
+        	THREE.GeometryUtils.merge(geometry, cubeGeometry);
+        };
+        mesh = new THREE.Mesh(geometry, cubeMaterial);
+        mesh.position.y = -4200;
+        scene.add( mesh );
+
+        var light = new THREE.AmbientLight( 0x666666 ); 
+        scene.add( light );
+
+        var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 ); 
+        directionalLight.position.set( 1, 1, 0 ); 
+        scene.add( directionalLight );
+
+        createSnow();
+        createClouds();
+        createCubeMap();
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.autoClear = false;
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+        initPostprocessing();
+
+        document.body.appendChild( renderer.domElement );
+
+        control = new THREE.TrackballControls(camera);
+        control.noZoom = true;
+        control.noPan = true;
+
+        stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				stats.domElement.style.right = '0px';
+				stats.domElement.style.zIndex = 100;
+				// document.body.appendChild( stats.domElement );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				addAudio();
+	    }
+
+      function launch() {
+        control.noRotate = false;
+        audio.play();
+      }
+
+      function onWindowResize(){
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+
+          renderer.setSize( window.innerWidth, window.innerHeight );
+      }
+
+	    function addAudio () {
+	    	audio = new Audio();
+				audio.src = './sound/music.ogg';
+				audio.autoplay = false;
+
+				var context = new webkitAudioContext();
+				analyser = context.createAnalyser();
+
+				window.addEventListener('load', function(e) {
+				  var source = context.createMediaElementSource(audio);
+				  source.connect(analyser);
+				  analyser.connect(context.destination);
+				}, false);
+	    }
+
+	    function animate() {
+        requestAnimationFrame( animate );
+
+				var l = snowSystemGeometry.vertices.length;
+				while(l--)
+				{
+					var particle = snowSystemGeometry.vertices[l];
+					particle.y = (particle.y > SCENE_SIZE * .5) ? -SCENE_SIZE * .5 : particle.y + 5;
+				}
+				snowSystemGeometry.verticesNeedUpdate = true;
+
+			  var freqByteData = new Uint8Array(analyser.frequencyBinCount);
+  			analyser.getByteFrequencyData(freqByteData);
+
+  			var vertices = mesh.geometry.vertices;
+  			var step = 256 / CUBE_NUMBER;
+  			var currentAverage = 0;
+  			// if(Date.now() - date < 20000) console.log(freqByteData);
+  			for (var i = 0; i < 256; i++) {
+  				currentAverage += freqByteData[i];
+  				if(i % step && i != 0) {
+  					currentAverage *= currentAverage * .1;
+  					var cubeID = Math.floor(i / step);
+	  				vertices[cubeID*8].y = currentAverage;
+	  				vertices[cubeID*8+1].y = currentAverage;
+	  				vertices[cubeID*8+4].y = currentAverage;
+	  				vertices[cubeID*8+5].y = currentAverage;
+	  				currentAverage = 0;
+  				}
+  			};
+  			mesh.geometry.verticesNeedUpdate = true;
+
+  			cameraCube.fov = camera.fov = 75 + Math.abs(camera.position.y * 0.008);
+	    	camera.updateProjectionMatrix();
+	    	cameraCube.updateProjectionMatrix();
+
+        control.update();
+        stats.update();
+
+        cameraCube.rotation.copy( camera.rotation );
+			  composer.render();
+	    }
+
+	    function initPostprocessing () {
+	    	var renderTargetParameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat, stencilBuffer: true };
+
+			  var renderCubeMap = new THREE.RenderPass(sceneCube, cameraCube);
+			  var renderScene = new THREE.RenderPass(scene, camera);
+			  renderScene.clear = false;
+
+			  composer = new THREE.EffectComposer(renderer, new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, renderTargetParameters));
+
+			  shaderPass = new THREE.ShaderPass( THREE.EzeckielShader );
+			  shaderPass.renderToScreen = true;
+
+			  composer.addPass(renderCubeMap);
+			  composer.addPass(renderScene);
+			  composer.addPass(shaderPass);
+	    }
+
+	    function createCubeMap () {
+				var shader = THREE.ShaderUtils.lib[ "cube" ];
+				shader.uniforms[ "tCube" ].value = textureCube;
+
+				var material = new THREE.ShaderMaterial( {
+					fragmentShader: shader.fragmentShader,
+					vertexShader: shader.vertexShader,
+					uniforms: shader.uniforms,
+					side: THREE.BackSide
+				} );
+
+				var mesh = new THREE.Mesh( new THREE.CubeGeometry( SCENE_SIZE * 2, SCENE_SIZE * 2, SCENE_SIZE * 2 ), material );
+				sceneCube.add( mesh );
+	    }
+
+			function createSnow () {
+				snowSystemGeometry = new THREE.Geometry();
+
+				var materials = [];
+				var sprite = THREE.ImageUtils.loadTexture( "textures/sprites/snowflake2.png" );
+
+				for ( i = 0; i < 5000; i ++ ) {
+					var vertex = new THREE.Vector3();
+					vertex.x = Math.random() * SCENE_SIZE - SCENE_SIZE * .5;
+					vertex.y = Math.random() * SCENE_SIZE - SCENE_SIZE * .5;
+					vertex.z = Math.random() * SCENE_SIZE - SCENE_SIZE * .5;
+
+					snowSystemGeometry.vertices.push( vertex );
+				}
+
+				for (var i = 0; i < 3; i++) {
+					size  = 40 + Math.random() * 30;
+
+					material = new THREE.ParticleBasicMaterial( { size: size, map: sprite, blending: THREE.AdditiveBlending, depthTest: false, transparent : true } );
+
+					particleSystem = new THREE.ParticleSystem(snowSystemGeometry, material);
+
+					particleSystem.rotation.x = Math.random() * .4 - .2;
+					particleSystem.rotation.y = Math.random() * .4 - .2;
+					particleSystem.rotation.z = Math.random() * .4 - .2;
+
+					scene.add( particleSystem );
+				};
+			}
+
+			function createClouds () {
+				cloudSystemGeometry = new THREE.Geometry();
+
+				var materials = [];
+				var sprite = THREE.ImageUtils.loadTexture( "textures/sprites/cloud.png" );
+
+				for ( i = 0; i <1000; i ++ ) {
+					var vertex = new THREE.Vector3();
+					vertex.x = Math.random() * SCENE_SIZE - SCENE_SIZE * .5;
+					vertex.y = -5000 + 2000 * Math.random();
+					vertex.z = Math.random() * SCENE_SIZE - SCENE_SIZE * .5;
+
+					cloudSystemGeometry.vertices.push( vertex );
+				}
+
+				size  = 5000;
+
+				material = new THREE.ParticleBasicMaterial( {size: size, map: sprite, depthTest: true, transparent : true } );
+
+				particleSystem = new THREE.ParticleSystem( cloudSystemGeometry, material);
+				particleSystem.sortParticles = true;
+
+				particleSystem.rotation.x = Math.random() * .4 - .2;
+				particleSystem.rotation.y = Math.random() * .4 - .2;
+				particleSystem.rotation.z = Math.random() * .4 - .2;
+
+				scene.add( particleSystem );
+			}
+
+		</script>
+
+
+    <script type="text/javascript">
+      control.noRotate = true;
+      var transitionDuration = 300;
+      $(".popinContainer").mouseenter(function(){
+        $(".popin#volume").addClass('hidden');
+        $(".popin#start").removeClass('hidden');
+      }).mouseleave(function(){
+        $(".popin#volume").removeClass('hidden');
+        $(".popin#start").addClass('hidden');
+      });
+      $('.button').click(function () {
+        $('.popinContainer').addClass('hidden').fadeOut(200);
+        launch();
+        $('canvas').css('cursor', 'move');
+      });
+      audio.addEventListener('ended', function(){
+        audio.currentTime = 0;
+        audio.play();
+      }, false);
+    </script>
+	</body>
+</html>
