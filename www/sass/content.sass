@@ -166,7 +166,9 @@ iframe
 			.preview
 				position: absolute
 			.tooltip
-				display: none
+				+transform(scale(0.8))
+				+opacity(0)
+				+single-transition(all, 200ms, ease-out)
 				position: absolute
 				text-align: center
 				font: normal 10px/30px "QuicksandBold-Regular"
@@ -203,6 +205,9 @@ iframe
 			&:hover
 				.tooltip
 					display: block
+					+transform(scale(1))
+					+opacity(1)
+					+single-transition(all, 200ms, ease-out)
 				.curtain
 					+opacity(0)
 					+single-transition(all, 300ms, ease-out)
