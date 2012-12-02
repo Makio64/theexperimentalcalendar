@@ -66,7 +66,7 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 #creators .entries .entry .content .description .icons { margin-top: 3px; margin-left: 83px; }
 #creators .entries .entry .content .description .icons img { display: block; }
 #creators .entries .entry .content .description .icons .wave { margin-top: -13px; margin-left: -6px; }
-#creators .entries .entry .content .description .description { width: 130px; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-top: 10px; margin-left: 22px; margin-right: auto; }
+#creators .entries .entry .content .description .description { width: 130px; text-transform: uppercase; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-top: 10px; margin-left: 22px; margin-right: auto; }
 
 @media screen and (min-width: 480px) and (max-width: 768px) { #home { width: 525px; }
   #presentation #baseline { font-size: 25px; width: 500px; height: 40px; padding: 15px 0 0 0; } }
