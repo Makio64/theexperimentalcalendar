@@ -72,6 +72,7 @@
   #home { width: 700px; } }
 @media screen and (min-width: 875px) { #presentation #baseline { width: 850px; height: 55px; font: normal 54px "HelveticaNeueLTStd-Th"; padding: 5px 0 0 0; }
   #home { width: 875px; } }
+@media screen and (max-width: 875px) { header div.center { width: 95%; } }
 @media only screen and (max-width: 480px) { #presentation .logo { width: 320px; }
   #presentation .logo h2 { text-align: center; font-size: 23px; margin: 0 auto; }
   #presentation .logo .arrow { margin: 0 auto; }
