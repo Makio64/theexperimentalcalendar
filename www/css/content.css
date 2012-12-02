@@ -42,13 +42,13 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 #calendar .entry .project { position: absolute; width: 175px; height: 175px; }
 #calendar .entry .project .preview { position: absolute; }
 #calendar .entry .project .tooltip { display: none; position: absolute; text-align: center; font: normal 10px/30px "QuicksandBold-Regular"; color: #d81919; background-color: white; width: 115px; height: 30px; margin-left: 30px; margin-top: 75px; }
-#calendar .entry .project .curtain { display: block; position: absolute; width: 175px; height: 175px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 30, 30, 0.8)), color-stop(100%, #a81414)); background-image: -webkit-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: -moz-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: -o-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: linear-gradient(rgba(255, 30, 30, 0.8), #a81414); filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90); opacity: 0.9; color: white; }
+#calendar .entry .project .curtain { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90); opacity: 0.9; -webkit-transition: all 400ms ease-out; -moz-transition: all 400ms ease-out; -o-transition: all 400ms ease-out; transition: all 400ms ease-out; display: block; position: absolute; width: 175px; height: 175px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 30, 30, 0.8)), color-stop(100%, #a81414)); background-image: -webkit-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: -moz-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: -o-linear-gradient(rgba(255, 30, 30, 0.8), #a81414); background-image: linear-gradient(rgba(255, 30, 30, 0.8), #a81414); color: white; }
 #calendar .entry .project .curtain .number { margin-top: 40px; }
 #calendar .entry .project .curtain .number .separator { background-color: white; }
 #calendar .entry .project .curtain .description { margin-top: 100px; text-align: center; font: normal 10px "QuicksandBold-Regular"; }
 #calendar .entry .project .icon { margin-top: 30px; margin-left: 80px; }
 #calendar .entry .project:hover .tooltip { display: block; }
-#calendar .entry .project:hover .curtain { display: none; }
+#calendar .entry .project:hover .curtain { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0; -webkit-transition: all 300ms ease-out; -moz-transition: all 300ms ease-out; -o-transition: all 300ms ease-out; transition: all 300ms ease-out; }
 
 #creators { margin-bottom: 100px; }
 #creators:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }

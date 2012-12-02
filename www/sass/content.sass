@@ -178,12 +178,13 @@ iframe
 					left: 30px
 					top: 75px
 			.curtain
+				+opacity(0.9)
+				+single-transition(all, 400ms, ease-out)
 				display: block
 				position: absolute
 				width: $entrySize
 				height: $entrySize
 				+background-image( linear-gradient( rgba( 255, 30, 30, .8 ), #a81414 ) )
-				+opacity( .9 )
 				color: #fff
 				.number
 					margin-top: 40px
@@ -203,7 +204,8 @@ iframe
 				.tooltip
 					display: block
 				.curtain
-					display: none
+					+opacity(0)
+					+single-transition(all, 300ms, ease-out)
 
 #creators
 	margin-bottom: 100px
