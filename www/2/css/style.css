@@ -1,0 +1,27 @@
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video{ display: block; }
+mark, rp, rt, ruby, summary, time{ display: inline }
+
+/* Site-wide properties ======================================================== */
+html {
+    height: 100%;
+	background:#000;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-color:#000;
+	background-image: -moz-radial-gradient(50% 50%, ellipse closest-side, #000, #111 100%);
+	background-image: -webkit-radial-gradient(50% 50%, ellipse closest-side, #000, #111 100%);
+	background-image: -o-radial-gradient(50% 50%, ellipse closest-side, #000, #111 100%);
+	background-image: -ms-radial-gradient(50% 50%, ellipse closest-side, #000, #111 100%);
+	background-image: radial-gradient(50% 50%, ellipse closest-side, #000, #111 100%);
+}
+
+audio {
+	display: none;
+}
