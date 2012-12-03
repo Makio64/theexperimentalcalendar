@@ -13,7 +13,6 @@ header li#twitter a:hover{ background: url('../img/twitter_over.png') no-repeat;
 header li#google a { background: url('../img/google.png') no-repeat;  }
 header li#google a:hover { background: url('../img/google_over.png') no-repeat; }
 
-
 header h2{
   margin:0 0 0 20px;
   float: left;
