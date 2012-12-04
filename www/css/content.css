@@ -74,6 +74,7 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 
 #about { padding: 0 0 15px 0; }
 #about p { font: normal 10px "QuicksandBold-Regular"; text-transform: uppercase; color: #494949; display: inline; }
+#about .twitter-follow-button { position: relative; top: 6px; }
 
 @media screen and (min-width: 480px) and (max-width: 768px) { #home, #about { width: 525px; }
   #presentation #baseline { font-size: 25px; width: 500px; height: 40px; padding: 15px 0 0 0; } }
