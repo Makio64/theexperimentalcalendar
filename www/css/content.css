@@ -53,10 +53,11 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 #calendar .entry .project:hover .tooltip { display: block; -webkit-transform: scale(1); -moz-transform: scale(1); -ms-transform: scale(1); -o-transform: scale(1); transform: scale(1); filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1; -webkit-transition: all 200ms ease-out; -moz-transition: all 200ms ease-out; -o-transition: all 200ms ease-out; transition: all 200ms ease-out; }
 #calendar .entry .project:hover .curtain { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0; -webkit-transition: all 300ms ease-out; -moz-transition: all 300ms ease-out; -o-transition: all 300ms ease-out; transition: all 300ms ease-out; }
 
-#creators { margin-bottom: 100px; }
+#creators { margin-bottom: 30px; }
 #creators:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-#creators > .title { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; width: 240px; height: 32px; text-align: center; background-color: white; margin-top: 10px; margin-left: auto; margin-right: auto; }
+#creators > .title { color: #969696; font: normal 27px "HelveticaNeueLTStd-Th"; letter-spacing: 2px; width: 240px; height: 32px; text-align: center; background-color: white; margin: 10px auto 0 auto; }
 #creators > .title strong { color: #e71b1b; font-weight: normal; }
+#creators > .title p { padding: 5px 0 0 0; }
 #creators .entries { margin-top: 10px; }
 #creators .entries .entry { float: left; width: 175px; height: 355px; }
 #creators .entries .entry .avatar { width: 175px; height: 175px; }
