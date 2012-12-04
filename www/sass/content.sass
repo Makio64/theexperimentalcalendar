@@ -47,7 +47,7 @@ iframe
 		repeat: no-repeat
 		position: 50% 85px
 
-#home
+#home, #about
 	width: 875px
 	margin: 0 auto
 	&>.separator
@@ -288,9 +288,20 @@ iframe
 							top: 10px
 							left: 22px
 							right: auto
+
+
+//ABOUT 
+#about
+	padding: 0 0 15px 0
+	p
+		font: normal 10px "QuicksandBold-Regular"
+		text-transform: uppercase
+		color: #494949
+		display: inline
+
 //MediaQueries
 @media screen and (min-width: 480px) and (max-width: 768px)
-	#home
+	#home, #about
 		width: 525px
 	#presentation #baseline
 		font-size : 25px
@@ -304,7 +315,7 @@ iframe
 		width: 670px
 		height: 50px
 		padding: 15px 0 0 0
-	#home
+	#home, #about
 		width: 700px
 
 @media screen and (min-width: 875px)
@@ -313,7 +324,7 @@ iframe
 		height: 55px
 		font: normal 54px "HelveticaNeueLTStd-Th"
 		line-height: 55px
-	#home
+	#home, #about
 		width: 875px
 
 @media screen and (max-width: 875px)
@@ -334,7 +345,7 @@ iframe
 				margin: 0 auto
 		#baseline
 			display: none
-	#home
+	#home, #about
 		width: 300px
 
 		#calendar

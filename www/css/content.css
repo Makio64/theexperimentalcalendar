@@ -15,9 +15,9 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 
 #animation { position: absolute; width: 100%; height: 135px; background-color: #071846; background-image: url("../img/halo.png"); background-repeat: no-repeat; background-position: 50% 85px; }
 
-#home { width: 875px; margin: 0 auto; }
-#home > .separator { margin-top: 12px; }
-#home > .separator img { display: block; margin-left: auto; margin-right: auto; }
+#home, #about { width: 875px; margin: 0 auto; }
+#home > .separator, #about > .separator { margin-top: 12px; }
+#home > .separator img, #about > .separator img { display: block; margin-left: auto; margin-right: auto; }
 
 #presentation { width: 100%; position: relative; margin-top: 50px; margin-left: auto; margin-right: auto; }
 #presentation .logo { width: 520px; margin: 50px auto 0 auto; }
@@ -72,35 +72,38 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 #creators .entries .entry .content .description .icons .wave { margin-top: -13px; margin-left: -6px; }
 #creators .entries .entry .content .description .description { width: 130px; text-transform: uppercase; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-top: 10px; margin-left: 22px; margin-right: auto; }
 
-@media screen and (min-width: 480px) and (max-width: 768px) { #home { width: 525px; }
+#about { padding: 0 0 15px 0; }
+#about p { font: normal 10px "QuicksandBold-Regular"; text-transform: uppercase; color: #494949; display: inline; }
+
+@media screen and (min-width: 480px) and (max-width: 768px) { #home, #about { width: 525px; }
   #presentation #baseline { font-size: 25px; width: 500px; height: 40px; padding: 15px 0 0 0; } }
 @media screen and (min-width: 768px) { #presentation #baseline { font-size: 37px; width: 670px; height: 50px; padding: 15px 0 0 0; }
-  #home { width: 700px; } }
+  #home, #about { width: 700px; } }
 @media screen and (min-width: 875px) { #presentation #baseline { width: 850px; height: 55px; font: normal 54px "HelveticaNeueLTStd-Th"; line-height: 55px; }
-  #home { width: 875px; } }
+  #home, #about { width: 875px; } }
 @media screen and (max-width: 875px) { header div.center { width: 95%; } }
 @media only screen and (max-width: 480px) { header div.center { width: 100%; }
   #presentation .logo { width: 320px; }
   #presentation .logo h2 { text-align: center; font-size: 23px; margin: 0 auto; }
   #presentation .logo .arrow { margin: 0 auto; }
   #presentation #baseline { display: none; }
-  #home { width: 300px; }
-  #home #calendar .entry { width: 50%; height: 150px; }
-  #home #calendar .entry a { display: block; width: 100%; }
-  #home #calendar .entry a .project { width: 150px; height: 150px; }
-  #home #calendar .entry a .project .preview { width: 100%; max-width: 100%; }
-  #home #calendar .entry a .project .curtain { width: 150px; height: 150px; }
-  #home #calendar .entry a .project .curtain .number { margin: 30px 0 0 65px; }
-  #home #calendar .entry a .project .curtain .description { margin: 85px 0 0 0; }
-  #home #calendar .entry a .project .curtain .icon { margin-left: 70px; }
-  #home #calendar .entry a .project .tooltip { margin-left: 17px; margin-top: 65px; }
-  #home #calendar .entry .waiter .flocon { margin-left: 18px; margin-top: 18px; }
-  #home #calendar .entry .waiter .number { margin-top: 55px; margin-left: 60px; }
-  #home #creators .entries .entry { width: 150px; }
-  #home #creators .entries .entry a { display: block; }
-  #home #creators .entries .entry a .avatar { width: 100%; height: 150px; }
-  #home #creators .entries .entry .content > img { width: 150px; }
-  #home #creators .entries .entry .content > div { width: 150px; }
-  #home #creators .entries .entry .content .description .icons { margin-left: 71px; }
-  #home #creators .entries .entry .content .description .description { margin-left: 9px; }
-  #home #creators > .title { height: 30px; padding: 8px 0 0 0; } }
+  #home, #about { width: 300px; }
+  #home #calendar .entry, #about #calendar .entry { width: 50%; height: 150px; }
+  #home #calendar .entry a, #about #calendar .entry a { display: block; width: 100%; }
+  #home #calendar .entry a .project, #about #calendar .entry a .project { width: 150px; height: 150px; }
+  #home #calendar .entry a .project .preview, #about #calendar .entry a .project .preview { width: 100%; max-width: 100%; }
+  #home #calendar .entry a .project .curtain, #about #calendar .entry a .project .curtain { width: 150px; height: 150px; }
+  #home #calendar .entry a .project .curtain .number, #about #calendar .entry a .project .curtain .number { margin: 30px 0 0 65px; }
+  #home #calendar .entry a .project .curtain .description, #about #calendar .entry a .project .curtain .description { margin: 85px 0 0 0; }
+  #home #calendar .entry a .project .curtain .icon, #about #calendar .entry a .project .curtain .icon { margin-left: 70px; }
+  #home #calendar .entry a .project .tooltip, #about #calendar .entry a .project .tooltip { margin-left: 17px; margin-top: 65px; }
+  #home #calendar .entry .waiter .flocon, #about #calendar .entry .waiter .flocon { margin-left: 18px; margin-top: 18px; }
+  #home #calendar .entry .waiter .number, #about #calendar .entry .waiter .number { margin-top: 55px; margin-left: 60px; }
+  #home #creators .entries .entry, #about #creators .entries .entry { width: 150px; }
+  #home #creators .entries .entry a, #about #creators .entries .entry a { display: block; }
+  #home #creators .entries .entry a .avatar, #about #creators .entries .entry a .avatar { width: 100%; height: 150px; }
+  #home #creators .entries .entry .content > img, #about #creators .entries .entry .content > img { width: 150px; }
+  #home #creators .entries .entry .content > div, #about #creators .entries .entry .content > div { width: 150px; }
+  #home #creators .entries .entry .content .description .icons, #about #creators .entries .entry .content .description .icons { margin-left: 71px; }
+  #home #creators .entries .entry .content .description .description, #about #creators .entries .entry .content .description .description { margin-left: 9px; }
+  #home #creators > .title, #about #creators > .title { height: 30px; padding: 8px 0 0 0; } }
