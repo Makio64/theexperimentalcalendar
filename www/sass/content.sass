@@ -218,7 +218,7 @@ iframe
 					+opacity(0)
 					+single-transition(all, 300ms, ease-out)
 
-#creators
+#creators, #about
 	margin-bottom: 30px
 
 	&:after
@@ -292,15 +292,19 @@ iframe
 //ABOUT 
 #about
 	padding: 0 0 35px 0
-	p
-		font: normal 10px "QuicksandBold-Regular"
+	p.text
+		font: 11px/15px "QuicksandBold-Regular"
 		text-transform: uppercase
 		color: #494949
-		display: inline
+		display: block
+		width: 350px
+		margin: 0 0 15px 0
 
 	.twitter-follow-button
 		position: relative
 		top: 6px
+	.title
+		margin: 0 auto 30px auto
 
 //MediaQueries
 @media screen and (min-width: 480px) and (max-width: 768px)
@@ -391,7 +395,7 @@ iframe
 						margin-left: 60px
 
 
-		#creators 
+		#creators, #about
 			.entries 
 				.entry
 					width: 150px
