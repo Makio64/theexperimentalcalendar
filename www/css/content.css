@@ -73,7 +73,7 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 #creators .entries .entry .content .description .icons .wave { margin-top: -13px; margin-left: -6px; }
 #creators .entries .entry .content .description .description { width: 130px; text-transform: uppercase; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-top: 10px; margin-left: 22px; margin-right: auto; }
 
-#about { padding: 0 0 15px 0; }
+#about { padding: 0 0 35px 0; }
 #about p { font: normal 10px "QuicksandBold-Regular"; text-transform: uppercase; color: #494949; display: inline; }
 #about .twitter-follow-button { position: relative; top: 6px; }
 
