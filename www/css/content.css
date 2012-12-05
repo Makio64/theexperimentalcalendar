@@ -73,12 +73,11 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
 #creators .entries .entry .content .description .icons .wave, #about .entries .entry .content .description .icons .wave { margin-top: -13px; margin-left: -6px; }
 #creators .entries .entry .content .description .description, #about .entries .entry .content .description .description { width: 130px; text-transform: uppercase; font: normal 10px "QuicksandBold-Regular"; color: #494949; margin-top: 10px; margin-left: 22px; margin-right: auto; }
 
-#about { padding: 0 0 35px 0; }
-#about p.text { font: 11px/15px "QuicksandBold-Regular"; text-transform: uppercase; color: #494949; display: block; width: 350px; margin: 0 0 15px 0; }
-#about p.text.nomgin { margin: 0 0 5px 0; }
-#about .twitter-follow-button { position: relative; display: block; margin: 0 0 20px 0; top: 6px; }
-#about .twitter-follow-button.inline { display: inline; }
-#about .title { margin: 0 auto 30px auto; }
+#about { padding: 0 0 35px 0; margin: 0 auto; }
+#about p.text { font: 11px/15px "QuicksandBold-Regular"; text-transform: uppercase; color: #494949; display: block; width: 350px; margin: 0 auto 15px auto; text-align: center; }
+#about p.text.nomgin { margin: 0 auto 5px auto; }
+#about .twitter-follow-button { position: relative; display: block; margin: 0 auto 20px auto; text-align: center; }
+#about .title { margin: 0 auto 30px auto; width: 150px; height: 42px; line-height: 42px; }
 
 @media screen and (min-width: 480px) and (max-width: 768px) { #home, #about { width: 525px; }
   #presentation #baseline { font-size: 25px; width: 500px; height: 40px; padding: 15px 0 0 0; } }
