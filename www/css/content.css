@@ -103,7 +103,7 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
   #home #calendar .entry a .project .tooltip, #about #calendar .entry a .project .tooltip { margin-left: 17px; margin-top: 65px; }
   #home #calendar .entry .waiter .flocon, #about #calendar .entry .waiter .flocon { margin-left: 18px; margin-top: 18px; }
   #home #calendar .entry .waiter .number, #about #calendar .entry .waiter .number { margin-top: 55px; margin-left: 60px; }
-  #home #creators .entries .entry, #home #about .entries .entry, #about #creators .entries .entry, #about #about .entries .entry { width: 150px; }
+  #home #creators .entries .entry, #home #about .entries .entry, #about #creators .entries .entry, #about #about .entries .entry { width: 150px; height: 310px; }
   #home #creators .entries .entry a, #home #about .entries .entry a, #about #creators .entries .entry a, #about #about .entries .entry a { display: block; }
   #home #creators .entries .entry a .avatar, #home #about .entries .entry a .avatar, #about #creators .entries .entry a .avatar, #about #about .entries .entry a .avatar { width: 100%; height: 150px; }
   #home #creators .entries .entry .content > img, #home #about .entries .entry .content > img, #about #creators .entries .entry .content > img, #about #about .entries .entry .content > img { width: 150px; }
@@ -111,4 +111,5 @@ iframe { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%;
   #home #creators .entries .entry .content .description .icons, #home #about .entries .entry .content .description .icons, #about #creators .entries .entry .content .description .icons, #about #about .entries .entry .content .description .icons { margin-left: 71px; }
   #home #creators .entries .entry .content .description .description, #home #about .entries .entry .content .description .description, #about #creators .entries .entry .content .description .description, #about #about .entries .entry .content .description .description { margin-left: 9px; }
   #home #creators > .title, #home #about > .title, #about #creators > .title, #about #about > .title { height: 30px; padding: 8px 0 0 0; }
-  #home #creators > .title p, #home #about > .title p, #about #creators > .title p, #about #about > .title p { padding: 0; } }
+  #home #creators > .title p, #home #about > .title p, #about #creators > .title p, #about #about > .title p { padding: 0; }
+  #about p.text { width: 300px; } }
