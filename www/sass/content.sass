@@ -173,7 +173,7 @@ iframe
 			.tooltip
 				+transform(scale(0.8))
 				+opacity(0)
-				+single-transition(all, 200ms, ease-out)
+				+single-transition(scale opacity, 200ms, ease-out)
 				position: absolute
 				text-align: center
 				font: normal 10px "QuicksandBold-Regular"
@@ -187,7 +187,7 @@ iframe
 					top: 75px
 			.curtain
 				+opacity(0.9)
-				+single-transition(all, 400ms, ease-out)
+				+single-transition(opacity, 400ms, ease-out)
 				display: block
 				position: absolute
 				width: $entrySize
