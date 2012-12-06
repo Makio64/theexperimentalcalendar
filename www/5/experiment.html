@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- This is STILL a work in progress -->
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Jellyfish</title>
+<script src="js/lib/modernizr.js"></script>
+<script>
+
+function windowLoadHandler() {
+
+    var container = document.getElementById("container");
+    var app = new App(container);
+
+    var world = new World(app.width, app.height);
+    var medusa = new Medusa(2, new Vec2d( 50 + Math.random() * (world.width - 50), 50 + Math.random() * (world.height - 50)), Math.random()*Math.PI*2, 2, 4 * (Math.PI / 180));
+    var wander = new Wander(medusa);
+    var steeringController = new SteeringController(medusa, wander);
+    steeringController.addConstraint(new AvoidWallsConstraint(medusa, world.getWalls()));
+
+    var medusa2 = new Medusa(2, new Vec2d(Math.random() * world.width, Math.random() * world.height), Math.random()*Math.PI*2, 2, 4 * (Math.PI / 180));
+    var wander2 = new Wander(medusa2);
+    var steeringController2 = new SteeringController(medusa2, wander2);
+    steeringController2.addConstraint(new AvoidWallsConstraint(medusa2, world.getWalls()));
+
+    world.addAgent(medusa);
+
+    var render = function(time) {
+        app.clearContext()
+        world.draw(app.context);
+        window.requestAnimationFrame(render);
+    };
+    
+    var step = function() {
+        world.update();
+        medusa.update(steeringController.getSteering());
+        setTimeout( step, 1000 / 60 );
+    };
+
+    render.call();
+    step.call();
+
+}
+window.addEventListener("load", windowLoadHandler, false);
+
+</script>
+<link href='http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic' rel='stylesheet' type='text/css'>
+
+<style type="text/css">
+body { background: #000; margin : 0; font-family: 'Cabin', sans-serif; }
+canvas {  }
+
+</style>
+
+</head>
+<body>
+<div id="container"></div>
+
+<script src="js/App.js"></script>
+<script src="js/Math/Vec2d.js"></script>
+<script src="js/Math/Segment.js"></script>
+<script src="js/Debug/DebugDrawVisitor.js"></script>
+<script src="js/AI/SteeringGroup.js"></script>
+<script src="js/AI/SteeringController.js"></script>
+<script src="js/AI/behaviors.js"></script>
+<script src="js/World/World.js"></script>
+<script src="js/World/Objects/BaseObject.js"></script>
+<script src="js/World/Objects/Rectangle.js"></script>
+<script src="js/World/Objects/Agent.js"></script>
+<script src="js/World/Objects/Medusa.js"></script>
+</body>
+</html>
