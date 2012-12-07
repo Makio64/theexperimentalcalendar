@@ -61,7 +61,7 @@ APP.Main = {
 
 	onLoaded: function(){
 		APP.Main.preloaded++;
-		APP.Main.preloadedId.innerHTML = APP.Main.preloaded;
+		APP.Main.preloadedId.innerHTML = (APP.Main.preloaded * 100) / APP.Main.imagesLength;
 		if(APP.Main.preloaded == APP.Main.imagesLength){
 			APP.Main.loop();
 			APP.Main.preloadedWrapper.style.visibility = 'hidden';
