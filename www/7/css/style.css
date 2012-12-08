@@ -1,0 +1,219 @@
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video{ display: block; }
+mark, rp, rt, ruby, summary, time{ display: inline }
+
+/* Site-wide properties ======================================================== */
+body {
+	overflow: hidden;
+    height: 100%;
+	min-height:100%;
+    margin: 0;
+	padding:0;
+	background-color:#FAFAFA;
+}
+
+#texts{
+	position: absolute;
+	z-index: 30;
+	left: 50%;
+	top: 50%;
+	margin-left: -53px;
+	background: #000;
+}
+
+#texts img{
+	position: absolute;
+	z-index: 11;
+}
+
+#zZz{
+	z-index: 30;
+	position: absolute;
+	left:50%;
+	top:60%;
+	margin-left:60px;
+	margin-top: -415px; 
+}
+
+#zZz img{
+	opacity: 1;
+	position: absolute;
+}
+
+#catTail{
+	position: absolute;
+	margin-left: -244px;
+	margin-top: -126px;
+	top: 50%;
+	left: 50%;
+	z-index: 23;
+}
+
+#wall {
+	z-index: 0;
+	position: absolute;
+	cursor: pointer;
+	left:50%;
+	top:60%;
+	margin-left:-150px;
+	margin-top: -150px; 
+}
+
+#catSleep {
+	z-index: 22;
+	position: absolute;
+	cursor: pointer;
+	left:50%;
+	top:60%;
+	margin-left:-103px;
+	margin-top: -134px; 
+}
+
+#catSleep canvas {
+	position: absolute;
+}
+
+#catSleep .circleWaves {
+	top: -15px;
+	left: -24px;
+}
+
+#hitbox {
+	z-index: 20000;
+	position: absolute;
+	cursor: pointer;
+	left:50%;
+	top:50%;
+	width: 280px;
+	height: 190px;
+	margin-left:-150px;
+	margin-top: -100px; 
+	opacity: 0;
+	background: #000;
+}
+
+#cat {
+	z-index: 20;
+	position: absolute;
+	cursor: pointer;
+	left:50%;
+	top:60%;
+	margin-left:-150px;
+	margin-top: -150px; 
+	/*-webkit-transform: rotateY(15deg);*/
+}
+
+#cat img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+#catShadow {
+	z-index: 19;
+	position: absolute;
+	cursor: pointer;
+	left:50%;
+	top:60%;
+	margin-left:-150px;
+	margin-top: -110px; 
+}
+
+#cat .body{
+	top: 20px;
+	left:45px; 
+	opacity: 1;
+}
+
+#cat #angryface{
+	top: 55px;
+	left:26px; 
+}
+
+#cat #angrytail{
+	top: -168px;
+	left:137px; 
+}
+
+#cat #leg1{
+	top: 136px;
+	left:18px; 
+}
+
+#cat #leg2{
+	top: 130px;
+	left:115px; 
+}
+
+#cat #leg3{
+	top: 71px;
+	left:144px; 
+}
+
+#cat #head{
+	top: 20px;
+	left:155px; 
+}
+
+#cat #tail{
+	left:35px;
+	top: 90px;
+	display:none;
+}
+
+#cat #ear1{
+	left:205px;
+	top: 0px; 
+}
+
+#cat #ear2{
+	left:235px;
+	top: 75px; 
+}
+
+#cat #handLeft{
+	left:165px;
+	top: 75px; 
+}
+
+#cat #handRight{
+	left:115px;
+	top: 75px; 
+}
+
+#cat #mouth{
+	left:195px;
+	top: 98px; 
+}
+
+#cat #mustache{
+	left:170px;
+	top: 50px; 
+}
+
+#cat #eye1{
+	left:200px;
+	top: 80px; 
+}
+
+#cat #eye2{
+	left:215px;
+	top: 100px; 
+}
+
+#cat #angryEyes{
+	left:200px;
+	top: 80px; 
+}
+
+#gift{
+	z-index: 50;
+	position: absolute;
+	left:50%;
+	top:0;
+	margin-left: -171px;
+	width: 282px;
+	height: 265px;
+	margin-top:-265px;
+}
