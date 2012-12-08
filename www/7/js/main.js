@@ -95,12 +95,7 @@ function catClick()
 	}
 	if(cat.state == 4){
 		state = 0;
-		// gift = $('<img src="./img/gift.png" />');
-		// $("#gift").append(gift);
-		// TweenLite.to($("#gift"),.3,{ease:Quad.easeIn,css:{top:"50%", marginTop:"-130px"}})
-		// TweenLite.to($("#gift"),.3,{delay:.3,ease:Quad.easeOut,css:{scaleY:.9}})
-		// TweenLite.to($("#gift"),.6,{delay:.6,ease:Quad.easeOutIn,css:{scaleY:1.1,marginTop:"-165px"}})
-		// TweenLite.to($("#gift"),.8,{delay:1.2,ease:Back.easeOut,css:{scaleY:1}});
+		TweenLite.to($('#wall'),1.1,{css:{height:0},ease:Quad.easeIn});
 	    TweenLite.to($("#catSleep"),.5,{delay:.3,ease:Quad.easeOut,css:{scaleX:1,marginTop:"-136px"}});
 	    TweenLite.to($("#cat"),.5,{delay:.3,ease:Quad.easeOut,css:{scaleX:1,marginTop:"-150px"}});
 		TweenLite.to($("#catShadow"),.2,{css:{marginLeft:"-180px",scaleX:.8,scaleY:1}});
@@ -127,6 +122,8 @@ function catClick()
 		for (i = clickMe.length - 1; i >= 0; i--) {
 			clickMe[i].close();
 		};
+
+		TweenLite.to($('#wall'),1.4,{delay:.3,css:{height:"150px"},ease:Back.easeOut});
 		fxs[1].activate();
 		TweenLite.to($("#catShadow"),.2,{css:{marginLeft:"-180px",scaleX:.8}});
 		TweenLite.to($("#catShadow"),.2,{delay:.2,css:{marginLeft:"-180px",scaleX:.7,opacity:.4}});

@@ -1,0 +1,23 @@
+{
+  "name": "SantasHeadExperiment",
+  "version": "0.1.1",
+  "dependencies": {
+    "threejs": "https://raw.github.com/mrdoob/three.js/master/build/three.min.js",
+    "headtrackr":"https://github.com/auduno/headtrackr.git",
+    "buzz": "https://raw.github.com/jaysalvat/buzz/master/buzz.js",
+    "tween": "https://raw.github.com/sole/tween.js/master/src/Tween.js",
+    "jquery": "http://code.jquery.com/jquery-1.8.3.min.js",
+    "CopyShader": "http://mrdoob.github.com/three.js/examples/js/shaders/CopyShader.js",
+    "ConvolutionShader": "http://mrdoob.github.com/three.js/examples/js/shaders/ConvolutionShader.js",
+    "FilmShader": "http://mrdoob.github.com/three.js/examples/js/shaders/FilmShader.js",
+   	"EffectComposer": "http://mrdoob.github.com/three.js/examples/js/postprocessing/EffectComposer.js",
+   	"MaskPass": "http://mrdoob.github.com/three.js/examples/js/postprocessing/MaskPass.js",
+   	"RenderPass": "http://mrdoob.github.com/three.js/examples/js/postprocessing/RenderPass.js",
+   	"BloomPass": "http://mrdoob.github.com/three.js/examples/js/postprocessing/BloomPass.js",
+   	"ShaderPass": "http://mrdoob.github.com/three.js/examples/js/postprocessing/ShaderPass.js",
+   	"FilmPass": "http://mrdoob.github.com/three.js/examples/js/postprocessing/FilmPass.js",
+   	"VignetteShader": "https://raw.github.com/mrdoob/three.js/master/examples/js/shaders/VignetteShader.js",
+   	"ColorifyShader": "http://mrdoob.github.com/three.js/examples/js/shaders/ColorifyShader.js"
+   	"Detector": "https://raw.github.com/mrdoob/three.js/master/examples/js/Detector.js"
+  }
+}

@@ -24,13 +24,12 @@ var Cat = function(){
 	    formats: [ "mp3" ]
 	});;
 
-	this.electricity.setVolume(4);
+	this.electricity.setVolume(10);
 
 	this.grrr = new buzz.sound("./sfx/cat_angry", {
 	    preload: true,
 	    formats: [ "mp3" ],
-	});;
-	this.grrr.setVolume(7);
+	});
 
 	this.body = $("<img class='body' src='./img/body.png'/>");
 	this.body2 = $("<img class='body' src='./img/body.png'/>");
@@ -152,11 +151,11 @@ var Cat = function(){
 		this.angryTail.css("opacity",1);
 		this.angryFace.css("opacity",1);
 
-		TweenLite.from(this.leg1,.8,{delay:delay,ease:Back.easeOut,css:{opacity:0, top:20, left:50}});
-		TweenLite.from(this.leg2,.8,{delay:delay,ease:Back.easeOut,css:{opacity:0, top:20, left:50}});
-		TweenLite.from(this.leg3,.8,{delay:delay,ease:Back.easeOut,css:{opacity:0, top:20, left:50}});
+		TweenLite.from(this.leg1,.2,{delay:delay,ease:Back.easeOut,css:{opacity:0, top:20, left:50}});
+		TweenLite.from(this.leg2,.2,{delay:delay,ease:Back.easeOut,css:{opacity:0, top:20, left:50}});
+		TweenLite.from(this.leg3,.2,{delay:delay,ease:Back.easeOut,css:{opacity:0, top:20, left:50}});
 		TweenLite.from(this.angryTail,.6,{delay:delay,ease:Back.easeOut,css:{opacity:0,scaleX:.8,scaleY:.8, top:0, left:50}});
-		TweenLite.from(this.angryFace,.7,{delay:delay,ease:Back.easeOut,css:{opacity:0,scaleX:.8,scaleY:.8, top:0, left:50},onComplete:this.onOpenAngryComplete,onCompleteParams:[this]});
+		TweenLite.from(this.angryFace,.2,{delay:delay,ease:Back.easeOut,css:{opacity:0,scaleX:.8,scaleY:.8, top:0, left:50},onComplete:this.onOpenAngryComplete,onCompleteParams:[this]});
 	}
 
 	this.destroyCat = function(delay){
@@ -165,19 +164,19 @@ var Cat = function(){
 		TweenLite.to(this.leg3,.2,{delay:delay,ease:Quad.easeIn,css:{opacity:0, top:20, left:50}});
 		TweenLite.to(this.angryTail,.2,{delay:delay,ease:Quad.easeIn,css:{opacity:0,scaleX:.8,scaleY:.8, top:0, left:50}});
 		TweenLite.to(this.angryFace,.2,{delay:delay,ease:Quad.easeIn,css:{opacity:0,scaleX:.8,scaleY:.8, top:0, left:50}});
-	container.append(this.handLeft);
-	container.append(this.ear2);
-	container.append(this.head);
-	container.append(this.ear1);
-	container.append(this.mouth);
-	container.append(this.mustache);
-	container.append(this.handRight);
-	container.append(this.tail);
-	container.append(this.eye1);
-	container.append(this.eye2);
-	container.append(this.angryEyes);
-	container.append(this.body2);
-	this.body2.css("opacity",0);
+		container.append(this.handLeft);
+		container.append(this.ear2);
+		container.append(this.head);
+		container.append(this.ear1);
+		container.append(this.mouth);
+		container.append(this.mustache);
+		container.append(this.handRight);
+		container.append(this.tail);
+		container.append(this.eye1);
+		container.append(this.eye2);
+		container.append(this.angryEyes);
+		container.append(this.body2);
+		this.body2.css("opacity",0);
 	}
 
 	this.onOpenComplete = function(cat){

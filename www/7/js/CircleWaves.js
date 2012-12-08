@@ -23,10 +23,12 @@ var CircleWaves = function() {
     this.ctx.beginPath();
     
     var localMouseX, localMouseY;
-    if(this.wave == true){
+    if(this.wave === true){
       this.t -= PI2/50;
-      localMouseX = Math.cos(this.t)*80+this.canvas.width/2;
-      localMouseY = Math.sin(this.t)*80+this.canvas.height/2;
+      var strength = 1 - ((this.t+HalfPI)/(HalfPI * 5));
+      console.log(80 * (strength));
+      localMouseX = Math.cos(this.t)* 300 * strength+(this.canvas.width * 0.5);
+      localMouseY = Math.sin(this.t)* 300 * strength+(this.canvas.height * 0.5);
       if(this.t<=-HalfPI){
         this.wave = false;
         this.activated = false;
@@ -58,23 +60,13 @@ var CircleWaves = function() {
       }
       this.ctx.lineTo(x, y);
     }
-    if(this.activated){
-      if(this.wave){
-        var grd=this.ctx.createLinearGradient(this.canvasWidth * 0.5,this.canvasHeight * 0.5, localMouseX,localMouseY);
-        grd.addColorStop(0,"rgba(242, 81, 81, 0)");
-        grd.addColorStop(1,"rgba(242, 81, 81, "+maxRatio+")");
-      } else {
-        this.ctx.fillStyle="f88d6f";
-      }
-      
-      this.ctx.fillStyle=grd;
-    } else {
-      var grd=this.ctx.createLinearGradient(this.canvasWidth * 0.5,this.canvasHeight * 0.5, localMouseX,localMouseY);
-      grd.addColorStop(0.5,"rgba(242, 81, 81, 0)");
-      // grd.addColorStop(0,"green");
-      grd.addColorStop(1,"rgba(242, 81, 81, "+maxRatio+")");
-      this.ctx.fillStyle=grd;
-    }
+    var grd=this.ctx.createLinearGradient(this.canvasWidth * 0.5,this.canvasHeight * 0.5, localMouseX,localMouseY);
+    grd.addColorStop(0.5,"rgba(242, 81, 81, 0)");
+    grd.addColorStop(1,"rgba(242, 81, 81, "+maxRatio+")");
+    this.ctx.fillStyle=grd;
+
+    if(this.activated && !this.wave) this.ctx.fillStyle="f88d6f";
+
     this.ctx.fill();
     this.ctx.closePath();
   };
@@ -83,13 +75,13 @@ var CircleWaves = function() {
       this.activated = true;
       $("#catSleep").css("zIndex", 19);
     // fxs[1].activate();
-  }
+  };
 
   this.madeWave = function(){
     this.activated = true;
     this.wave = true;
-    this.t = PI2*.8;
-  }
+    this.t = PI2*0.8;
+  };
 
   this.redraw();
 };

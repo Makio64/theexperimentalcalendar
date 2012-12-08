@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Santa's Head Experiment</title>
+	<link href='http://fonts.googleapis.com/css?family=Quicksand:300,700' rel='stylesheet' type='text/css'>
+	<style>
+	html, body {
+		height: 100%;
+		font-family: 'Quicksand', sans-serif;
+		color: #fff
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.blue {
+		color: #2b79f9;
+	}
+
+	.container a {
+		display: inline-block;
+		background-color: #0183f6;
+		padding: 20px 35px;
+		border-radius: 2px;
+		font-weight: bold;
+		text-decoration: none;
+		color: #fff;
+		margin-top: 20px;
+	}
+
+	.container img {
+		margin-bottom: 10px;
+	}
+
+	#inputVideo {
+		width: 100%; 
+		height: 100%
+	} 
+
+	#trackerVideo {
+		width: 100px!important;
+		height: 75px!important;
+		opacity: 0.5!important;
+		position: absolute;
+		bottom: 30px;
+		left: 30px;
+	}
+
+	#trackerCanvas {
+		display: none;
+	}
+
+	#browserNotSupported {
+		display: none;
+		width: 100%;
+		height: 100%;
+		padding-top: 15%;
+		background: url(assets/images/background.jpg) 50% 0 no-repeat;
+		text-align: center;
+	}
+	#browserNotSupported .container {
+		width: 40%;
+		margin: 0 auto;
+		text-transform: uppercase;
+	}
+	#browserNotSupported .container a:hover {
+		background-color: #339bf6
+	}
+
+	#tutorial {
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.8);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		font-weight: bold;
+		text-align: center;
+		padding-top: 15%;
+	}
+
+	#tutorial .container {
+		width: 590px;
+		margin: 0 auto;
+		text-transform: uppercase;
+	}
+
+	#tutorial .container.louder {
+		display: none;
+	}
+
+	#int-tutorial {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 35%;
+		display: none;
+	}
+
+	#int-tutorial .container {
+		position: relative;
+		text-align: center;
+	}
+
+	#int-tutorial .container p {
+		font-size: 50px;
+		text-transform: uppercase;
+	}
+
+	#int-tutorial .container p strong {
+		font-size: 100px;
+	}
+
+	.left, .right {
+		position: absolute;
+		top: 0;
+		width: 105px;
+		height: 107px;
+		background: url(assets/images/chrome-arrows.png) no-repeat 0 0;
+		display: none;
+	}
+
+	.left {
+		left: 40px;
+	}
+
+	.right {
+		background-position-x: -105px;
+		right: 40px;
+	}
+
+	</style>
+</head>
+<body>
+	<!-- Browser not supported -->
+	<div id="browserNotSupported">
+		<div class="container allowCameraAccess">
+			<img src="assets/images/chrome-logo.png" alt="">
+			<p>This is a <strong>google chrome</strong> experiment <br> Please, get the latest version of Chrome</p>
+			<a href="http://www.google.com/chrome">Download Chrome</a>
+		</div>
+	</div>
+	<!-- Introduction -->
+	<div id="tutorial">
+		<div class="container allowCamera">
+			<p>Please <span class="blue">allow camera access</span></p>
+			<img src="assets/images/chrome-allow-access.png" alt="">	
+		</div>
+		<div class="container louder">
+			<img src="assets/images/chrome-volume.png" alt="">
+			<p>Louder it now !!</p>
+			<a href="#">Jingle bells</a>
+		</div>
+	</div>
+	<!-- Interactive tutorial -->
+	<div id="int-tutorial">
+		<div class="container">
+			<div class="left"></div>
+			<p class="blue"><strong>Move</strong><br>Your head</p>
+			<div class="right"></div>
+		</div>
+	</div>
+	<!-- Canvas scene -->
+	<canvas id="scene"></canvas>
+	<canvas id="trackerCanvas" width="320" height="240"></canvas>
+	<video id="trackerVideo" autoplay loop></video>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>

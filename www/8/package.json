@@ -1,0 +1,17 @@
+{
+  "name": "SantasHeadExperiment",
+  "version": "0.1.1",
+  "author": "RayFranco <fbouly@gmail.com>",
+  "dependencies" : {
+  	"flour": "",
+    "uglify-js": "",
+    "coffee-script"   :  "1.4.x",
+    "bower": ""
+  },
+  "devDependencies": {
+    "buster"    :  "0.6.x",
+    "buster-html-doc" : "",
+    "buster-coffee" :  "0.x.x"
+  },
+  "license": "Apache 2.0"
+}
