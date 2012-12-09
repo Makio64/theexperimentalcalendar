@@ -9,7 +9,12 @@ body {
 	min-height:100%;
     margin: 0;
 	padding:0;
-	background-color:#FFF;
+	background-color: #ecf0f2;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ecf0f2)); /* Safari 4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #ffffff, #ecf0f2); /* Chrome 10+, Safari 5.1+, iOS 5+ */
+	background-image: -moz-linear-gradient(top, #ffffff, #ecf0f2); /* Firefox 3.6-15 */
+	background-image: -o-linear-gradient(top, #ffffff, #ecf0f2); /* Opera 11.10-12.00 */
+	background-image: linear-gradient(to bottom, #ffffff, #ecf0f2); /* Firefox 16+, IE10, Opera 12.50+ */
 }
 
 #texts{
@@ -58,7 +63,7 @@ body {
 	width: 100%;
 	height: 0px;
 	/*opacity: 0;*/
-	background: url("../img/meow.jpg") no-repeat center bottom; 
+	background: url("../img/meow.png") no-repeat center bottom; 
 }
 
 #catSleep {

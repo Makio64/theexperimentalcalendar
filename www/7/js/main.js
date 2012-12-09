@@ -127,7 +127,7 @@ function catClick()
 		fxs[1].activate();
 		TweenLite.to($("#catShadow"),.2,{css:{marginLeft:"-180px",scaleX:.8}});
 		TweenLite.to($("#catShadow"),.2,{delay:.2,css:{marginLeft:"-180px",scaleX:.7,opacity:.4}});
-		TweenLite.to($("#catShadow"),.4,{delay:.4,css:{marginLeft:"-185px",scaleY:1.9,scaleX:1.1,marginTop:"-100px",opacity:1}});
+		TweenLite.to($("#catShadow"),.4,{delay:.4,css:{marginLeft:"-190px",scaleY:1,scaleX:1,marginTop:"-100px",opacity:1}});
 		TweenLite.to($("#catSleep"),.8,{ease:Back.easeInOut,css:{marginTop:"-214px",scaleX:.9}});
 	    TweenLite.to($("#cat"),.8,{ease:Back.easeInOut,css:{marginTop:"-230px",scaleX:.9}});
 	    cat.openAngryFace(.55);
