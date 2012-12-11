@@ -1,0 +1,560 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Christmas Experiment</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link  href="css/main.css" rel="stylesheet"/>
+	</head>
+<body>
+    <div id="infos">
+    	<div class="textBtn A"><p>Loading</p></div>
+    	<div class="textBtn B"><p>Grab</p></div>
+    	<div class="textBtn C"><p>And</p></div>
+    	<div class="textBtn D"><p>Shake</p></div>
+    	<div class="textBtn E"><p>The Snowball!!</p></div>
+    	<div class="textBtn F"><p>Ready</p></div>
+    	<div class="textBtn G"><p>Go!!</p></div>
+    </div>		
+    <div id="top-black"></div>
+
+    <script src="vendor/jquery/jquery-1.8.2.min.js"></script>
+	<script src="vendor/three.js/three.min.js"></script>
+	<script src="vendor/greensock/TweenLite.min.js"></script>
+	<script src="vendor/greensock/TimelineLite.min.js"></script>
+	<script src="vendor/greensock/plugins/CSSPlugin.min.js"></script>
+	<script src="vendor/greensock/easing/EasePack.min.js"></script>
+	<script src="vendor/signals.min.js"></script>
+	<script src="vendor/three.js/Detector.js"></script>
+	<script src="js/audio/Song.js"></script>
+	<script src="util/Math2.js"></script>
+
+	<script>
+		var camera, scene, projector, renderer, cameraControls, snowBallContainer;
+		var light;
+		var angle = 0, angle2 = 0;
+		var images = {}, geometries = {}; 
+		var isBallOnRollOver = false, isMouseDown = false;
+		var environmentMesh, ballMesh, santaHandMesh, santaContainer;
+		var mouse = { x: 0, y: 0 }, INTERSECTED;
+		var shakePower = 0;
+		var introLaunched = false;
+
+		var particles = []; 
+		var particleGeometry;
+		var particleSystem;
+		var boxW, boxH;
+		var boxD = 1000;
+		var windSpeed = 2.5;
+		var particleCount = 3000;
+		var particleSize = 10;
+		var gravity = 0;
+		var particleLifeSpan = 400;
+		var windDir = 0;
+		var perlin = new Math2.ImprovedNoise();
+		var noiseScale = 180;
+
+		var audioContext, analyzer, audioSource, audioBufferSource, songDuration = 0, sData, soundData, currentSongTime;
+		var timeline, isTimelineCompleted = false;
+
+		addEvents();
+
+		$(document).ready(function() {
+			onWindowResize();
+			if ( !Detector.webgl ) {
+				$(".textBtn.A p").text("Use a browser with webGL enabled, please.");
+				$("#infos").css("left", "28%");
+			}else{
+				loadSounds();	
+			}
+		});
+
+		function loadSounds() {
+			audioContext = new (window.AudioContext || window.webkitAudioContext)();
+			analyser = audioContext.createAnalyser();
+	        analyser.fftSize = 1024;
+	        analyser.smoothingTimeConstant = 0.1;
+	        analyser.connect(audioContext.destination);
+	        sData = new Uint8Array(128);
+
+			var song = new Song("asset/sound/inside_pikachu_cunt.mp3", audioContext);
+			song.loadedSignal.add(function(){
+
+				audioSource = audioContext.createBufferSource();
+		        audioSource.buffer = song.buffer;
+		        songDuration = audioSource.buffer.duration;
+		        audioBufferSource = audioSource;
+		        audioSource.buffer = song.buffer;
+		        audioSource.connect(analyser);
+		        audioSource.loop = true;
+		        audioSource.noteOn(0);
+
+		        loadAssets();
+			});
+			song.load();
+		}
+
+		function getSoundDataAverage() {
+	        analyser.smoothingTimeConstant = 0.1;
+	        analyser.getByteFrequencyData(sData);
+	        var average = 0;
+	        for (var i = 0, lgth = sData.length; i < lgth; ++i) {
+	            average += sData[i];
+	        }
+	        var fixedAverage = (average / lgth) == 0 ? 1 : (average / lgth);
+	        return fixedAverage;
+	    }
+
+		function loadAssets() {
+
+			var i = 0;
+			var assets = {
+							imgs:[	{ id:"cubeNegZ", url:"asset/texture/negz.jpg" },
+									{ id:"wood", url:"asset/texture/wood.jpg" }, 
+									{ id:"paperB", url:"asset/texture/paperB.jpg" },
+									{ id:"particle", url:"asset/texture/particle.png" } ],
+							geoms:[	{ id:"base", url:"asset/geometry/base.js" },
+									{ id:"ground", url:"asset/geometry/ground.js" },
+									{ id:"santa", url:"asset/geometry/santa.js" },
+									{ id:"santa_hand", url:"asset/geometry/santa_hand.js" }, 
+									{ id:"treeA", url:"asset/geometry/treeA.js" }, 
+									{ id:"ball", url:"asset/geometry/ball.js" } ]
+						};
+
+			images[ "length" ] = 0;
+			for (i = 0; i < assets.imgs.length; i++) {
+				var image = new Image();
+				$(image).attr('id', assets.imgs[i].id);
+				image.onload = function() {
+					images[ $(this).attr('id') ] = this;
+					images[ "length" ] += 1;
+					if(images["length"] === assets.imgs.length ) {
+						images["state"] = "completed";
+						onLoadCompleted();
+					}
+				}
+				image.src = assets.imgs[i].url;
+			};
+
+			geometries[ "length" ] = 0;
+			var binaryLoader = new THREE.BinaryLoader();
+			for (i = 0; i < assets.geoms.length; i++) {
+				binaryLoader.load(assets.geoms[i].url, function(geometry) {
+					geometries[geometry.id] = geometry;
+					geometries[ "length" ] += 1;
+					if(geometries["length"] === assets.geoms.length ) {
+						geometries["state"] = "completed";
+						onLoadCompleted();
+					}
+		        }, null, null, assets.geoms[i].id);
+			};
+
+			function onLoadCompleted () {
+				if(images["state"] === "completed" && geometries["state"] === "completed") {
+					init();
+					animate();
+				}
+			}
+		}
+
+		function addEvents() {
+			document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+			document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+			document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+			window.addEventListener( 'resize', onWindowResize, false );
+			onWindowResize();
+		}
+
+		function init() {
+			projector = new THREE.Projector();
+
+			boxW = window.innerWidth;
+			boxH = window.innerHeight;
+
+			renderer = new THREE.WebGLRenderer({antialias : true, clearAlpha : 1, sortObjects : false, sortElements : false});
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			scene = new THREE.Scene();
+			scene.fog = new THREE.Fog( 0x000000, 10, 600 );
+			snowBallContainer = new THREE.Object3D();
+			scene.add(snowBallContainer);
+
+			camera	= new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 1000);
+			scene.add(camera);
+			camera.position.set(-160, 25, 0);
+			camera.rotation.set(Math2.degreesToRadians(-90), Math2.degreesToRadians(-65), Math2.degreesToRadians(-90));
+
+			var light	= new THREE.DirectionalLight( 0xffffff, 0.6 );
+			light.position.set( 0, 12, -10 );
+			scene.add( light );
+			var light	= new THREE.DirectionalLight( 0xffffff, 0.5 );
+			light.position.set( 0, 50, 50 );
+			scene.add( light );
+			var light	= new THREE.DirectionalLight( 0xffffff, 0.9 );
+			light.position.set( 0, 12, -10 );
+			snowBallContainer.add( light );
+			var light	= new THREE.DirectionalLight( 0xffffff, 0.8 );
+			light.position.set( 0, 50, 50 );
+			snowBallContainer.add( light );
+
+	        var paperTexture = new THREE.Texture(images["paperB"]);
+	        paperTexture.wrapT = THREE.RepeatWrapping;
+            paperTexture.wrapS = THREE.RepeatWrapping;
+            paperTexture.needsUpdate = true;
+
+            var woodTexture = new THREE.Texture(images["wood"]);
+	        woodTexture.wrapT = THREE.RepeatWrapping;
+            woodTexture.wrapS = THREE.RepeatWrapping;
+            woodTexture.needsUpdate = true;
+
+            var urls = [ 	$(images["cubeNegZ"]).attr("src"), $(images["cubeNegZ"]).attr("src"),
+							$(images["cubeNegZ"]).attr("src"), $(images["cubeNegZ"]).attr("src"),
+							$(images["cubeNegZ"]).attr("src"), $(images["cubeNegZ"]).attr("src") ];
+
+			var textureCube = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
+
+	        //snowBall
+	        //base
+	        var baseMaterial = new THREE.MeshLambertMaterial({ color:0x707070, shading: THREE.FlatShading, map:woodTexture });
+	        var baseMesh = new THREE.Mesh(geometries["base"], baseMaterial);
+	        snowBallContainer.add(baseMesh);
+	        //ground
+	        var groundMaterial = new THREE.MeshNormalMaterial({ color:0xffffff, shading: THREE.FlatShading, map:paperTexture });
+	        var groundMesh = new THREE.Mesh(geometries["ground"], groundMaterial);
+	        snowBallContainer.add(groundMesh);
+	        //santa
+	        var santaMaterials = [ 	new THREE.MeshNormalMaterial({ side:THREE.DoubleSide, color:0xffffff, shading: THREE.FlatShading, map:paperTexture }),
+	        						new THREE.MeshLambertMaterial({ side:THREE.DoubleSide, color:0xff0000, shading: THREE.FlatShading, map:paperTexture }),
+	        						new THREE.MeshNormalMaterial({ side:THREE.DoubleSide, color:0xffffff, shading: THREE.FlatShading, map:paperTexture })];
+
+	        santaContainer = new THREE.Object3D();
+	        var santaMesh = new THREE.Mesh(geometries["santa"], new THREE.MeshFaceMaterial());
+	        santaHandMesh = new THREE.Mesh(geometries["santa_hand"], new THREE.MeshFaceMaterial());
+	        santaMesh.material.materials = santaMaterials;
+	        santaHandMesh.material.materials = santaMaterials;
+	        santaHandMesh.position.set(28*0.1, 80*0.1, -6*0.1);
+	        santaContainer.scale.set(1.4, 1.4, 1.4);
+	        santaContainer.position.z = 2;
+	        santaContainer.add(santaMesh);
+	        santaContainer.add(santaHandMesh);
+	        snowBallContainer.add(santaContainer);
+
+	        //trees
+	        var treeMaterial = new THREE.MeshLambertMaterial({ shading: THREE.FlatShading, color:0x00a20c, map:paperTexture });
+	        var treeMesh = new THREE.Mesh(geometries["treeA"], treeMaterial);
+	        var treeMeshB = treeMesh.clone();
+	        var treeMeshC = treeMesh.clone();
+	        snowBallContainer.add(treeMesh);
+	        snowBallContainer.add(treeMeshB);
+	        snowBallContainer.add(treeMeshC);
+	        treeMeshB.rotation.set(0, Math2.degreesToRadians(60), 0);
+	        treeMeshB.position.set(-10, -4, 10);
+	        treeMeshB.scale.set(0.8, 0.8, 0.8);
+	        treeMeshC.rotation.set(Math2.degreesToRadians(30), Math2.degreesToRadians(-20), Math2.degreesToRadians(-10));
+	        treeMeshC.position.set(4, -4, 24);
+	        treeMeshC.scale.set(0.6, 0.6, 0.6);
+	        //ball
+	        var ballMaterial = new THREE.MeshLambertMaterial({ side:THREE.DoubleSide, shading: THREE.FlatShading, color:0xffffff, opacity:0.3, envMap: textureCube, refractionRatio: 0.98, reflectivity:0.9 });
+	        ballMesh = new THREE.Mesh(geometries["ball"], ballMaterial);
+	        snowBallContainer.add(ballMesh);
+	        snowBallContainer.scale.set(0.4, 0.4, 0.4);
+	        snowBallContainer.rotation.set(Math2.degreesToRadians(0), Math2.degreesToRadians(-90), 0);
+
+	        //environment
+	        var environmentMaterial = new THREE.MeshLambertMaterial({ side:THREE.DoubleSide, shading: THREE.FlatShading, color:0x292929, refractionRatio: 0.98, reflectivity:0.9 });
+			var environmentGeometry = geometries["ball"].clone();
+			environmentMesh = new THREE.Mesh(environmentGeometry, environmentMaterial);
+			scene.add(environmentMesh);
+			environmentMesh.position.set(0, -140, 0);
+			environmentMesh.scale.set(6, 6, 6);
+
+	        //snow particles
+			particleGeometry = new THREE.Geometry();
+			var sprite = THREE.ImageUtils.loadTexture("asset/texture/particle.png");
+			var pmaterial = new THREE.ParticleBasicMaterial({
+				size : particleSize,
+				map : sprite,
+				blending : THREE.AdditiveBlending,
+				depthTest : false,
+				transparent : true,
+				vertexColors : true,
+			});
+			particleSystem = new THREE.ParticleSystem(particleGeometry, pmaterial);
+			particleSystem.sortParticles = true;
+			scene.add(particleSystem);
+
+			particleSystem.material.opacity = 0.2;
+
+			for( i = 0; i < particleCount; i++) {
+				var p = new Particle(i / particleCount);
+				particles.push(p);
+			}
+
+			var topBlack = $("#top-black");
+			var infos = $("#infos");
+			var textA = $(".textBtn.A");
+			var textB = $(".textBtn.B");
+			var textC = $(".textBtn.C");
+			var textD = $(".textBtn.D");
+			var textE = $(".textBtn.E");
+			var textF = $(".textBtn.F");
+			var textG = $(".textBtn.G");
+			var topBase = 40;
+			timeline = new TimelineLite({ onComplete:timelineCompleted });
+			timeline.insert(TweenLite.to(infos, 1, { css:{top:(topBase-(7*0))+"%"}, ease:Expo.easeInOut }), 0);
+			timeline.insert(TweenLite.to(textA, 1, { css:{opacity:0}, ease:Expo.easeInOut }), 0);
+			timeline.insert(TweenLite.to(textB, 1, { css:{opacity:1}, ease:Expo.easeInOut }), 0);
+			timeline.insert(TweenLite.to(infos, 1, { css:{top:(topBase-(7*1))+"%"}, ease:Expo.easeInOut }), 2);
+			timeline.insert(TweenLite.to(textB, 1, { css:{opacity:0}, ease:Expo.easeInOut }), 2);
+			timeline.insert(TweenLite.to(textC, 1, { css:{opacity:1}, ease:Expo.easeInOut }), 2);
+			timeline.insert(TweenLite.to(infos, 1, { css:{top:(topBase-(7*2))+"%"}, ease:Expo.easeInOut }), 4);
+			timeline.insert(TweenLite.to(textC, 1, { css:{opacity:0}, ease:Expo.easeInOut }), 4);
+			timeline.insert(TweenLite.to(textD, 1, { css:{opacity:1}, ease:Expo.easeInOut }), 4);
+			timeline.insert(TweenLite.to(infos, 1, { css:{top:(topBase-(7*3))+"%"}, ease:Expo.easeInOut }), 6);
+			timeline.insert(TweenLite.to(textD, 1, { css:{opacity:0}, ease:Expo.easeInOut }), 6);
+			timeline.insert(TweenLite.to(textE, 1, { css:{opacity:1}, ease:Expo.easeInOut }), 6);
+			timeline.insert(TweenLite.to(infos, 1, { css:{top:(topBase-(7*4))+"%"}, ease:Expo.easeInOut }), 8);
+			timeline.insert(TweenLite.to(textE, 1, { css:{opacity:0}, ease:Expo.easeInOut }), 8);
+			timeline.insert(TweenLite.to(textF, 1, { css:{opacity:1}, ease:Expo.easeInOut }), 8);
+			timeline.insert(TweenLite.to(infos, 1, { css:{top:(topBase-(7*5))+"%"}, ease:Expo.easeInOut }), 10);
+			timeline.insert(TweenLite.to(textF, 1, { css:{opacity:0}, ease:Expo.easeInOut }), 10);
+			timeline.insert(TweenLite.to(textG, 1, { css:{opacity:1}, ease:Expo.easeInOut }), 10);
+			timeline.insert(TweenLite.to(textG, 1, { css:{opacity:0}, ease:Expo.easeInOut }), 11);
+			timeline.insert(TweenLite.to(camera.position, 1, { x:-60, ease:Expo.easeInOut }), 12);
+			timeline.insert(TweenLite.to(topBlack, 1, { css:{opacity:0}, ease:Linear.easeOut }), 12.5);
+			timeline.insert(TweenLite.to(santaHandMesh.rotation, 1, { x:Math2.degreesToRadians(-160), y:Math2.degreesToRadians(-50), z:Math2.degreesToRadians(10), ease:Expo.easeInOut }), 12.8);
+
+			timeline.timeScale(0.9);
+			timeline.gotoAndStop(0);
+		}
+
+		function onDocumentMouseMove( event ) {
+			event.preventDefault();
+
+			mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+			mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+			if(isMouseDown && isBallOnRollOver) {
+				if(shakePower < 1) shakePower += 0.02;
+			}
+		}
+
+		function onDocumentMouseDown( event ) {
+			event.preventDefault();
+			isMouseDown = true;
+			TweenLite.killTweensOf(particleSystem.material);
+		}
+
+		function onDocumentMouseUp( event ) {
+			event.preventDefault();
+			isMouseDown = false;
+			TweenLite.to(particleSystem.material, 3.5, { opacity:0.2, ease:Linear.easeOut });
+		}
+
+		function onWindowResize() {
+			$("#infos").css("left", (window.innerWidth/2 - 120) + "px");
+			if(!renderer) return;
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+		}
+
+		function timelineCompleted() {
+			isTimelineCompleted = true;
+			$("#infos").css("display", "none");
+		}
+
+		function launchIntro() {
+			if(introLaunched) return;			
+
+			timeline.play();
+
+			introLaunched = true;
+		}
+
+		function animate() {
+
+			requestAnimationFrame( animate );
+			update();
+			renderer.render( scene, camera );
+		}
+
+		function update(){
+	  		angle += 20;
+	  		soundData = getSoundDataAverage();
+	  		currentSongTime = audioContext.currentTime;
+
+	  		if(currentSongTime > 1.6) {
+	  			launchIntro();
+	  		}
+
+	  		var scaleEnv = soundData * 0.01;
+	  		environmentMesh.scale.set(5 + scaleEnv, 5 + scaleEnv, 5 + scaleEnv);
+
+	  		//particles update
+	  		windDir += (0.5 * (shakePower));
+			for( i = 0; i < particleCount; i++) {
+				particles[i].update();
+			}
+			particleGeometry.verticesNeedUpdate = true;
+			particleGeometry.colorsNeedUpdate = true;
+
+			environmentMesh.position.x = Math.sin((soundData * (0.04 + (shakePower*0.5)))) * ((soundData*0.008) + shakePower);
+			environmentMesh.position.y = Math.cos((soundData * (0.04 + (shakePower*0.5)))) * ((soundData*0.008) + shakePower);
+			environmentMesh.position.z = Math.sin((soundData * (0.04 + (shakePower*0.5)))) * ((soundData*0.008) + shakePower);
+			
+			santaContainer.position.y = Math.cos(angle*0.001) * 1;
+			santaContainer.rotation.x = Math.sin(angle*0.001) * .06;
+			santaContainer.rotation.y = Math.cos(angle*0.001) * .06;
+			santaContainer.rotation.z = Math.sin(angle*0.001) * .06;
+
+			if(isMouseDown && isBallOnRollOver) {
+				var bounceX = (mouse.x > 0) ? 120 : -120;
+				var bounceY = (mouse.y > 0) ? 120 : -120;
+				var acceleration = 3;
+				var pzLeft = (mouse.x > 0) ? (bounceX - snowBallContainer.position.z) : (snowBallContainer.position.z - bounceX);
+				var velpz = ((pzLeft * 0.025) < 0.01) ? 0 : ((pzLeft) * 0.025);
+				var pyLeft = (mouse.y > 0) ? (bounceY - snowBallContainer.position.y) : (snowBallContainer.position.y - bounceY);
+				var velpy = ((pyLeft * 0.025) < 0.01) ? 0 : ((pyLeft) * 0.025);
+				
+				snowBallContainer.position.z += (mouse.x * (acceleration * velpz));
+				snowBallContainer.position.y += (mouse.y * (acceleration * velpy));
+				snowBallContainer.rotation.z += (mouse.x * (velpz*0.1))
+				snowBallContainer.rotation.y -= (mouse.y * (velpy*0.1))
+				environmentMesh.rotation.y += (mouse.x * (velpz*0.03));
+				environmentMesh.rotation.z += (mouse.y * (velpy*0.03));
+
+				snowBallContainer.position.x = Math.sin((soundData * (0.01 + (shakePower*0.5)))) * ((soundData*0.008) + shakePower);
+				snowBallContainer.position.y = Math.cos((soundData * (0.01 + (shakePower*0.5)))) * ((soundData*0.008) + shakePower);
+				snowBallContainer.position.z = Math.sin((soundData * (0.01 + (shakePower*0.5)))) * ((soundData*0.008) + shakePower);
+
+				particleSystem.material.opacity += (shakePower - particleSystem.material.opacity) * 0.1;
+				gravity += (0.5 - gravity) * 0.1;
+				particleSystem.scale.x += (0.6 - particleSystem.scale.x) * 0.1;
+				particleSystem.scale.y += (0.6 - particleSystem.scale.y) * 0.1;
+				particleSystem.scale.z += (0.6 - particleSystem.scale.z) * 0.1;
+			}
+
+			if(!isMouseDown || !isBallOnRollOver){
+				var easing = 0.06;
+				snowBallContainer.position.z += ((Math.sin(angle*0.0004) * 2) - snowBallContainer.position.z) * easing;
+      			snowBallContainer.position.y += (((Math.cos(angle*0.0004) * 2) - snowBallContainer.position.y) * easing);
+      			snowBallContainer.rotation.z += (((Math.sin(angle*0.0004) * 0.1) - snowBallContainer.rotation.z) * easing);
+      			snowBallContainer.rotation.y += (Math2.degreesToRadians(-90) - snowBallContainer.rotation.y) * easing;
+      			environmentMesh.rotation.y += (0 - environmentMesh.rotation.y) * easing;
+      			environmentMesh.rotation.z += (0 - environmentMesh.rotation.z) * easing;
+
+      			gravity += (1 - gravity) * easing;
+      			particleSystem.scale.x += (1 - particleSystem.scale.x) * 0.1;
+				particleSystem.scale.y += (1 - particleSystem.scale.y) * 0.1;
+				particleSystem.scale.z += (1 - particleSystem.scale.z) * 0.1;
+
+				snowBallContainer.position.x = Math.cos(angle*0.0004) * 2;
+				snowBallContainer.rotation.x = Math.sin(angle*0.0004) * 0.1;
+
+      			if(shakePower > 0.01 ) {
+					shakePower -= 0.01;
+				}else{
+					shakePower = 0;
+				}
+	  			
+			}
+
+			particleSystem.position = snowBallContainer.position;
+			particleSystem.rotation = snowBallContainer.rotation;
+			environmentMesh.position.set(snowBallContainer.position.x, snowBallContainer.position.y-0, snowBallContainer.position.z);
+
+			if(isTimelineCompleted) {
+
+				angle2 += 0.06;
+				santaHandMesh.rotation.x = Math2.degreesToRadians(-160) + Math.sin(angle2) * Math2.degreesToRadians(10);
+				santaHandMesh.rotation.y = Math2.degreesToRadians(-50) + Math.sin(angle2) * Math2.degreesToRadians(7);
+				santaHandMesh.rotation.z = Math2.degreesToRadians(10) + Math.sin(angle2) * Math2.degreesToRadians(5);
+
+				//mouse intersections
+				var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+				projector.unprojectVector( vector, camera );
+				var ray = new THREE.Ray( camera.position, vector.subSelf( camera.position ).normalize() );
+				var intersects = ray.intersectObjects( snowBallContainer.children );
+
+				if ( intersects.length > 0 ) {
+					if ( INTERSECTED != intersects[ 0 ].object ) {
+						if(!isBallOnRollOver && angle > 20){
+							isBallOnRollOver = true;
+							$("#top-black").css("cursor", "pointer");	
+						}
+						INTERSECTED = intersects[ 0 ].object;
+					}
+				} else {
+					if(!isMouseDown) {
+
+						if ( INTERSECTED )  {
+							isBallOnRollOver = false;
+							$("#top-black").css("cursor", "default");
+						}
+						INTERSECTED = null;
+					}
+				}
+			}
+
+			
+		}
+
+		var Particle = function(id) {
+
+			this.lifeSpan = 200;
+			this.id = id;
+			this.posn = new THREE.Vector3();
+			var vertex = new THREE.Vector3();
+			vertex.x = Math.random() * 2500 - 1000;
+			vertex.y = Math.random() * 2500 - 1000;
+			vertex.z = Math.random() * 2500 - 1000;
+			this.screenPosn = vertex;
+			particleGeometry.vertices.push( this.screenPosn );
+
+			this.color = new THREE.Color();
+			particleGeometry.colors.push(this.color);
+
+			this.init = function() {
+				this.screenPosn.set(Math2.rand(boxW / 2, -boxW / 2, 1), Math2.rand(boxH / 2, -boxH / 2, 1), Math2.rand(boxD / 2, -boxD / 2, 1));
+				this.posn.x = this.screenPosn.x + boxW / 2;
+				this.posn.y = this.screenPosn.y + boxH / 2;
+
+				var col = Math2.map(this.screenPosn.y, -boxH / 2, boxH / 2, 0, 1);
+				this.speed = Math2.rand(windSpeed, windSpeed / 3, 1);
+				this.age = 0;
+				this.lifespan = Math.random() * particleLifeSpan;
+			}
+			this.update = function() {
+
+				this.id += 0.01;
+				this.direction = new THREE.Vector3(0, 0, 0);
+				this.direction = perlin.noise(this.id, this.posn.x / noiseScale, this.posn.y / noiseScale);
+
+				this.direction += windDir;
+
+				this.posn.x += Math.cos(this.direction) * this.speed;
+				this.posn.y += Math.sin(this.direction) * this.speed;
+				this.posn.y -= gravity;
+
+				if(this.posn.x < 0 || this.posn.y < 0) {
+					this.init();
+				}
+
+				this.age++;
+				if(this.age >= this.lifespan) {
+					this.init();
+				}
+
+				this.screenPosn.x = this.posn.x - boxW / 2;
+				this.screenPosn.y = this.posn.y - boxH / 2;
+			}
+
+			this.init();
+		}
+
+	</script>
+
+</body>
+</html>
