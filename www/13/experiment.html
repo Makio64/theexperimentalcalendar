@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>merry christmas!</title>
+	<meta name="description" content="a peaceful walk on a quiet planet" />
+	<script src="assets/js/swfobject.js"></script>
+	<script>
+		
+		var flashvars = {	song:"assets/mp3/track_xp.mp3"	};
+		var params = {
+			menu: "false",
+			scale: "noScale",
+			allowFullscreen: "true",
+			allowScriptAccess: "always",
+			bgcolor: "",
+			wmode: "direct"
+		};
+		
+		var attributes = {
+			id:"music",
+			name:"music",
+		};
+		
+		swfobject.embedSWF(
+			"assets/swf/misc.swf", 
+			"altContent", "1px", "1px", "10.0.0", 
+			"expressInstall.swf", 
+			flashvars, params, attributes, onLoaded );
+		
+		function onLoaded( e )
+		{
+			if( e.success == false )
+			{
+				onMusicLoaded();
+			}
+		}
+		
+		function readyToLoad( e )
+		{
+			setTimeout( startMusicLoading, 1 );
+		}
+		
+		function startMusicLoading()
+		{
+			try
+			{
+				thisMovie( 'music' ).startMusicLoading();
+			}
+			catch(err){}
+		}
+		
+		function onMusicLoaded()
+		{
+			try
+			{
+				
+				var soundComplete = document.createEvent( "Event" );
+				soundComplete.initEvent( "SoundComplete", true, true );
+				document.getElementById( 'eventDispatcher' ).dispatchEvent( soundComplete );
+				
+			}
+			catch( err ){}
+		 
+        }
+		
+		function setSoundSpeed( t,v )
+		{
+			try
+			{
+				thisMovie( 'music' ).setSoundSpeed( t,v );
+			}
+			catch(err){}
+		}
+		
+		function thisMovie(movieName) 
+		{
+			if (navigator.appName.indexOf("Microsoft") != -1)
+			{
+				return window[movieName];
+			} 
+			else 
+			{
+				return document[movieName];
+			}
+		}
+	</script>
+	
+	<link rel="stylesheet" type="text/css" href="assets/christmas.css">
+	
+</head>
+<body>
+	
+	<div id="eventDispatcher"></div>
+	
+	<div>
+		<script>
+		
+		window.hasWebGL = false;
+		
+		var canvas = document.createElement('canvas');
+		
+		if( !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))) )
+		{
+			window.hasWebGL = true;
+		}
+		else
+		{
+			defaultMessage();
+			window.hasWebGL = false;
+		}
+		
+		function defaultMessage() 
+		{
+			
+			var d = document.createElement("div");
+			d.id = '#titles_xmas';
+			d.style.position = 'absolute';
+			d.style.width = '100%';
+			d.style.height = '100%';
+			document.body.appendChild( d );
+			
+			d.innerHTML = '<p><br/><br/>sorry, your browser won\'t support this animation (WebGL you know...).<br/> it might also be your Flash player\'s version that doesn\'t work<br/><br/>you can try it on another browser, like Chrome or FireFox, or on another computer.<br/>sorry about that... <br/><br/>anyway, Merry Christmas and a Happy near Year!</p>';
+			
+		}
+		
+		</script>
+		<script src="assets/js/haxe.js"></script>
+		
+	</div>
+	
+	<div id="altContent" style="height:1px; width:1px; ">
+	</div>
+	
+	
+</body>
+</html>

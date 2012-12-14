@@ -1,0 +1,15 @@
+html,body{height:100%;overflow:hidden;background-color:#000000;}
+body{margin:0;}
+a{text-decoration:none;color:#3C606C;font-family:"Lucida Sans Unicode,Lucida Grande";font-weight:bold;font-size:14px;}
+a:hover{color:#5484B4;text-decoration:underline;}
+p{text-align:right;color:#FFFFFF;font-family:"Lucida Sans Unicode,Lucida Grande";font-weight:normal;font-size:14px;margin-right:20px;margin-top:2px;}
+h1{text-align:right;text-indent:10px;color:#FFFFFF;font-family:"Trebuchet MS";font-size:14px;font-style:italic;margin-top:16px;margin-right:16px;margin-bottom:2px;}
+h2{color:#FFFFFF;font-family:"Trebuchet MS";font-size:18px;font-style:italic;text-align:center;}
+#please_wait{background-image:url('png/please_wait.png');background-repeat:no-repeat;width:800px;height:80px;}
+#titles_arrows{position:absolute;background-image:url('png/titles_arrows.png');background-repeat:no-repeat;width:800px;height:80px;}
+#titles_credits{position:absolute;background:url('png/titles_credits.png');background-repeat:no-repeat;width:800px;height:80px;}
+#titles_sound{position:absolute;background:url('png/titles_sound.png');background-repeat:no-repeat;width:800px;height:80px;}
+#titles_xmas{position:absolute;background-image:url('png/titles_xmas.png');background-repeat:no-repeat;width:800px;height:80px;}
+#creditsButton{position:absolute;background-image:url('png/credits.png');background-repeat:no-repeat;width:64px;height:64px;}
+#credits,#credits:hover{position:absolute;}
+
