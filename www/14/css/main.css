@@ -1,0 +1,44 @@
+canvas{
+    background:black;
+    display:block;
+}
+
+html{
+    background: black;
+    font-family: "Rye", sans-serif;
+}
+
+.fade{
+    opacity: 0;
+}
+
+.preload{
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    width:830px;
+    height:400px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-left: -415px;
+    margin-top: -200px;
+    z-index: 10;
+    text-align: center;
+    font-size: 90px;
+    font-variant: small-caps;
+    color:white;
+}
+
+.preload span{
+    margin-top:0px;
+    font-variant: normal;
+    font-size: 40px;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.preload:hover{
+    cursor: pointer;
+}
