@@ -26,7 +26,6 @@ var CircleWaves = function() {
     if(this.wave === true){
       this.t -= PI2/50;
       var strength = 1 - ((this.t+HalfPI)/(HalfPI * 5));
-      console.log(80 * (strength));
       localMouseX = Math.cos(this.t)* 300 * strength+(this.canvas.width * 0.5);
       localMouseY = Math.sin(this.t)* 300 * strength+(this.canvas.height * 0.5);
       if(this.t<=-HalfPI){
