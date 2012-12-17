@@ -20,6 +20,7 @@ class Controller
 		particleManager = new ParticleManager(  )
 
 		$('.ready').live 'click', @lauchGame
+		$('.end a').bind 'click', @reloadPage
 		$(document).bind 'soundLoaded', @onSoundLoaded
 		$(document).bind 'characterLoaded', @onCharacterLoaded
 		$(document).bind 'audioUpdate', @onAudioUpdate
@@ -29,7 +30,8 @@ class Controller
 		$(document).bind 'endGame', @standUp
 		$(document).bind 'keyup', @onKeyUp
 		$(document).bind 'endMusic', @onSoundEnded		
-		$(document).bind 'success', @onKeySucess	
+		$(document).bind 'success', @onKeySucess
+		$(window).resize @onResize	
 
 	lauchGame: ( e ) =>
 		$('.overlay').fadeOut()
@@ -121,6 +123,12 @@ class Controller
 
 	onKeySucess: ( e ) =>
 		particleManager.sendParticle( 1 )
+
+	reloadPage: ( e ) =>
+		location.reload()
+
+	onResize: ( e ) =>
+		particleManager.resize()
 		
 		
 

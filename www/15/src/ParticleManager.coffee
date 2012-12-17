@@ -39,7 +39,7 @@ class ParticleManager
 		for position in positions
 			emittors.push( new ParticleEmittor(position.x+@offsetX, position.y+@offsetY, @buffer) )
 
-	reisze:()->
+	resize:()->
 		@canvas.width = @buffer.width = @canvasW = window.innerWidth
 		@canvas.height = @buffer.height = @canvasH = window.innerHeight
 		@offsetX = @canvasW / 2 - 257

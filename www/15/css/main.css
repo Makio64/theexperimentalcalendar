@@ -134,7 +134,7 @@ body {
   position: absolute;
   width: 650px;
   height: 70px;
-  top: 100%;
+  top: 95%;
   left: 50%;
   margin: 50px 0 0 -325px;
   opacity: 0;
@@ -211,7 +211,7 @@ audio {
   position: absolute;
   width: 75px;
   height: 75px;
-  top: 110%;
+  top: 106%;
   left: 50%;
   margin: 0 0 0 -40px;
 }

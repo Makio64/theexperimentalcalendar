@@ -103,7 +103,7 @@ class ChristmasSound
     	loaded = bool
 
     lowVolume: () ->
-    	$('audio').animate({volume: 0.2}, 2000);
+    	$('audio').animate({volume: 0.1}, 5000);
 
     shutVolume: () ->
     	console.log "shut"

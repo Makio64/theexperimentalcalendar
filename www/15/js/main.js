@@ -145,8 +145,8 @@
 
     ChristmasSound.prototype.lowVolume = function() {
       return $('audio').animate({
-        volume: 0.2
-      }, 2000);
+        volume: 0.1
+      }, 5000);
     };
 
     ChristmasSound.prototype.shutVolume = function() {
@@ -619,7 +619,7 @@
       }
     }
 
-    ParticleManager.prototype.reisze = function() {
+    ParticleManager.prototype.resize = function() {
       var emittor, i, position, _i, _ref, _results;
       this.canvas.width = this.buffer.width = this.canvasW = window.innerWidth;
       this.canvas.height = this.buffer.height = this.canvasH = window.innerHeight;
@@ -943,6 +943,10 @@
     regularTempoModeActived = false;
 
     function Controller() {
+      this.onResize = __bind(this.onResize, this);
+
+      this.reloadPage = __bind(this.reloadPage, this);
+
       this.onKeySucess = __bind(this.onKeySucess, this);
 
       this.standUp = __bind(this.standUp, this);
@@ -974,6 +978,7 @@
       ssCharacter = new SSCharacter;
       particleManager = new ParticleManager();
       $('.ready').live('click', this.lauchGame);
+      $('.end a').bind('click', this.reloadPage);
       $(document).bind('soundLoaded', this.onSoundLoaded);
       $(document).bind('characterLoaded', this.onCharacterLoaded);
       $(document).bind('audioUpdate', this.onAudioUpdate);
@@ -984,6 +989,7 @@
       $(document).bind('keyup', this.onKeyUp);
       $(document).bind('endMusic', this.onSoundEnded);
       $(document).bind('success', this.onKeySucess);
+      $(window).resize(this.onResize);
     }
 
     Controller.prototype.lauchGame = function(e) {
@@ -1097,6 +1103,14 @@
 
     Controller.prototype.onKeySucess = function(e) {
       return particleManager.sendParticle(1);
+    };
+
+    Controller.prototype.reloadPage = function(e) {
+      return location.reload();
+    };
+
+    Controller.prototype.onResize = function(e) {
+      return particleManager.resize();
     };
 
     return Controller;
