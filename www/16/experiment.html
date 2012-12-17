@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Magic Xmas</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/reset.css">
+        <style type="text/css">
+            /* set up a canvas container covering the entire window */
+            html {height: 100%;width: 100%; }
+            body {height: inherit; margin: 0px;background: #000;}
+            #container
+            {
+                width: 100%;
+                margin: 0px;
+                position: absolute;
+                top: 120px;
+            }
+            #loaderScreen
+            {
+                position: absolute;
+                left: 50%;
+                margin-left: -100px;
+                width: 200px;
+                height: 100px;
+                background-color: rgba( 0, 0, 0, .2 );
+                color: #fff;
+                border: 5px solid #fff;
+                font-family: Tahoma;
+                font-size: 20px;
+                text-align: center;
+                letter-spacing: 2px;
+                line-height: 100px;
+                margin-top: 100px;
+                cursor: pointer;
+            }
+            #heightmap
+            {
+                display: none;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="container">
+            <div id="loaderScreen">
+                LOADING...
+            </div>
+        </div>
+        <img id="heightmap" src="./img/heightmap_soft_s_2.jpg" alt="">
+        <div id="svg">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1024px" height="768px" viewBox="0 0 1024 768" enable-background="new 0 0 1024 768" xml:space="preserve">
+                <g id="path">
+                    <path fill="none" stroke="#00F900" stroke-miterlimit="10" d="M332-340c0,0,74.957-43.494,88.669-93.092
+                        c0.542-1.96,0.988-3.93,1.331-5.908c9-52,27-93.752,57-86.376c0,0,19-1.624,44,29.376c0,0,42,36,63-36c0,0,41-106,137-72
+                        c0,0,75,78-61,99c0,0-61,16-17,49c0,0,49,33.276,146-19.362c0,0,70-31.638,84,10.362c0,0,7,33-31,64c0,0-46,47,68,33
+                        c0,0,133-45,154.5,5c0,0,13,39.878-57.5,61.067"/>
+                </g>
+                <g id="decors">
+                    <circle fill="#FF0000" cx="342" cy="-388" r="10"/>
+                    <circle fill="#FF0000" cx="447" cy="-415" r="10"/>
+                    <circle fill="#FF0000" cx="398" cy="-484" r="8"/>
+                    <circle fill="#FF0000" cx="863" cy="-309.122" r="14"/>
+                    <circle fill="#FF0000" cx="496" cy="-587" r="10"/>
+                    <circle fill="#FF0000" cx="476" cy="-465.938" r="10"/>
+                    <circle fill="#FF0000" cx="600" cy="-494" r="12"/>
+                    <circle fill="#FF0000" cx="683" cy="-575" r="10"/>
+                    <circle fill="#FF0000" cx="793.432" cy="-587" r="18"/>
+                    <circle fill="#FF0000" cx="616" cy="-432" r="10"/>
+                    <circle fill="#FF0000" cx="694" cy="-484" r="10"/>
+                    <circle fill="#FF0000" cx="584.935" cy="-617.051" r="10"/>
+                    <circle fill="#FF0000" cx="852" cy="-506" r="8"/>
+                    <circle fill="#FF0000" cx="784" cy="-345" r="10"/>
+                    <circle fill="#FF0000" cx="825.5" cy="-447" r="10"/>
+                    <circle fill="#FF0000" cx="971" cy="-411" r="10"/>
+                    <circle fill="#FF0000" cx="543" cy="-651" r="8"/>
+                    <circle fill="#FF0000" cx="543" cy="-533.583" r="8"/>
+                    <circle fill="#FF0000" cx="1024" cy="-345" r="8"/>
+                    <circle fill="#0000FF" cx="417.124" cy="-533.583" r="8"/>
+                    <circle fill="#0000FF" cx="466" cy="-425" r="8"/>
+                    <circle fill="#0000FF" cx="643" cy="-575" r="10"/>
+                    <circle fill="#0000FF" cx="574.935" cy="-597" r="8"/>
+                    <circle fill="#0000FF" cx="893" cy="-476" r="8"/>
+                    <circle fill="#0000FF" cx="745" cy="-421" r="10"/>
+                    <circle fill="#0000FF" cx="945" cy="-350" r="11"/>
+                    <circle fill="#FFFF00" cx="945" cy="-225.726" r="14"/>
+                    <circle fill="#FFFF00" cx="764" cy="-512" r="10"/>
+                    <circle fill="#FFFF00" cx="654" cy="-541" r="10"/>
+                    <circle fill="#FFFF00" cx="644" cy="-651" r="10"/>
+                    <circle fill="#FFFF00" cx="504" cy="-455.5" r="10"/>
+                    <circle fill="#FFFF00" cx="624" cy="-361" r="10"/>
+                    <circle fill="#0000FF" cx="795" cy="-451" r="8"/>
+                    <circle fill="#0000FF" cx="645" cy="-401" r="8"/>
+                    <circle fill="#0000FF" cx="545" cy="-561" r="12"/>
+                    <circle fill="#FFFF00" cx="555" cy="-451" r="10"/>
+                    <circle fill="#FFFF00" cx="887" cy="-397" r="10"/>
+                    <circle fill="#FF00FF" cx="644" cy="-262" r="14"/>
+                    <circle fill="#0000FF" cx="1024" cy="-361" r="8"/>
+                    <circle fill="#FFFF00" cx="1024" cy="-412" r="15"/>
+                    <circle fill="#FF0000" cx="764" cy="-667.394" r="41"/>
+                    <circle fill="#FF0000" cx="429" cy="-599" r="47"/>
+                    <circle fill="#FF0000" cx="969" cy="-558.015" r="47"/>
+                    <circle fill="#0000FF" cx="533" cy="-601" r="23.5"/>
+                    <circle fill="#0000FF" cx="600" cy="-718" r="67"/>
+                    <circle fill="#0000FF" cx="688" cy="-694.051" r="67"/>
+                    <circle fill="#FF0000" cx="514" cy="-651" r="47"/>
+                    <circle fill="#FF0000" cx="821" cy="-641" r="47"/>
+                    <circle fill="#0000FF" cx="771" cy="-646" r="67"/>
+                    <circle fill="#FF0000" cx="852" cy="-607" r="47"/>
+                    <circle fill="#FFFF00" cx="880" cy="-544.327" r="43.708"/>
+                    <circle fill="#FFFF00" cx="618.642" cy="-667.393" r="43.708"/>
+                    <circle fill="#FFFF00" cx="1052.5" cy="-472.5" r="91.5"/>
+                    <circle fill="#FF0000" cx="1167.5" cy="-285" r="80"/>
+                    <circle fill="#0000FF" cx="933.406" cy="-610.724" r="67"/>
+                    <circle fill="#0000FF" cx="971" cy="-492" r="67"/>
+                    <circle fill="#0000FF" cx="1167.5" cy="-396.493" r="67"/>
+                    <circle fill="#0000FF" cx="533" cy="-432" r="23.5"/>
+                    <circle fill="#0000FF" cx="580" cy="-437" r="23.5"/>
+                    <circle fill="#0000FF" cx="684" cy="-382" r="23.5"/>
+                    <circle fill="#0000FF" cx="815.5" cy="-429" r="23.5"/>
+                    <circle fill="#FF0000" cx="781.188" cy="-551" r="17.417"/>
+                    <circle fill="#FF0000" cx="766.722" cy="-631" r="17.417"/>
+                    <circle fill="#FF0000" cx="613.5" cy="-638.417" r="17.417"/>
+                    <circle fill="#FF0000" cx="561.276" cy="-638.417" r="17.417"/>
+                    <circle fill="#0000FF" cx="821" cy="-541" r="23.5"/>
+                    <circle fill="#0000FF" cx="1016" cy="-223" r="23.5"/>
+                    <circle fill="#0000FF" cx="1100.5" cy="-388" r="23.5"/>
+                    <circle fill="#0000FF" cx="1030.5" cy="-420.5" r="23.5"/>
+                    <circle fill="#FFFF00" cx="1104.5" cy="-262" r="43.708"/>
+                    <circle fill="#FFFF00" cx="1131.207" cy="-363" r="43.708"/>
+                    <circle fill="#FFFF00" cx="730.779" cy="-392" r="24.208"/>
+                    <circle fill="#FFFF00" cx="592.07" cy="-423.496" r="19.208"/>
+                    <circle fill="#FFFF00" cx="509.5" cy="-597" r="43.708"/>
+                    <circle fill="#FF0000" cx="337" cy="-433" r="8"/>
+                    <circle fill="#0000FF" cx="357.275" cy="-422" r="8"/>
+                    <circle fill="#0000FF" cx="712" cy="-492" r="8"/>
+                    <circle fill="#FFFF00" cx="440" cy="-367.792" r="10"/>
+                    <circle fill="#0000FF" cx="349.275" cy="-519.267" r="23.5"/>
+                    <circle fill="#0000FF" cx="219" cy="-500.619" r="67"/>
+                    <circle fill="#FF0000" cx="94.204" cy="-476" r="47"/>
+                    <circle fill="#0000FF" cx="136" cy="-355" r="67"/>
+                    <circle fill="#FFFF00" cx="152" cy="-246.5" r="91.5"/>
+                    <circle fill="#FF0000" cx="250" cy="-617.051" r="47"/>
+                    <circle fill="#0000FF" cx="238.275" cy="-397" r="23.5"/>
+                </g>
+                <g id="zone">
+                    <rect x="0" y="-900" fill="none" stroke="#FF8800" stroke-miterlimit="10" width="1300" height="900"/>
+                </g>
+                <g id="pathend">
+                    <path fill="none" stroke="#0000FF" stroke-miterlimit="10" d="M1009-301.933c0,0-133.5,39.433-366,39.933"/>
+                </g>
+                <g id="message">
+                    <path id="m1_1_" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M417.124-411.933c0,0,9.624-67.567,0-80.567
+                        c0,0,16.376,29.547,27.376,34.273c0,0,21-45.498,22-67.386c0,0,8,57.659,19,67.386"/>
+                    <path id="e_1_" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M555.5-494.5c0,0-28,23-48,19c0,0-25-22.564,24-46.282
+                        c0,0-36,21.282-18-22.718c0,0,0.289-9,35.145-19"/>
+                    <path id="r1_1_" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M565.5-507.979c0,0,1-40.521,5-60.521
+                        c0,0,28.853-45,45.426-39c0,0,18.574,20-41.426,68c0,0,30.853,1.043,41.426,31.521"/>
+                    <path id="r2_1_" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M645.5-526.979c0,0,1-40.521,5-60.521
+                        c0,0,28.853-45,45.426-39c0,0,18.574,20-41.426,68c0,0,30.853,1.043,41.426,31.521"/>
+                    <path id="y_1_" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M704.5-595.5c0,0,45.946,62.219,53.553-31.55
+                        c0.168-2.073,0.317-4.222,0.447-6.45c6-103-36,56.436,0,111.718"/>
+                    <path id="x_1_" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M601.5-496.5c0,0,41,17,64,36.5c0,0-46-59.5-38,19.5
+                        c0,0,2-49,26-84"/>
+                    <path id="m2_1_" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M672.071-425.5c0,0,9.571-55,0-78
+                        c0,0,33.429,105,45.429-37c0,0,9-30,22,78"/>
+                    <path id="a" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M781.188-415.376c0,0-0.688-93.688,21.812-106.406
+                        c0,0,12.5,0.297,12.5,58.29c0,0,11.945-44.007-43.027-9.007"/>
+                    <path id="s_1_" fill="none" stroke="#FF9700" stroke-miterlimit="10" d="M893.5-497.5c0,0-90,84-20,58c0,0,64-33.204,27,23.398
+                        c0,0-30.191,32.33-46.096,13.966"/>
+                </g>
+            </svg>            
+        </div>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="js/libs/Detector.js"></script>
+        <script src="js/libs/RequestFrameAnimation.js"></script>
+        <script src="js/libs/signals.min.js"></script>
+        <script src="js/libs/threejs/three.js"></script>
+        <script src="js/libs/threejs/loaders/OBJLoader.js"></script>
+        <script src="js/libs/audio/songPlayer.js"></script>
+        <script src="js/libs/audio/song.js"></script>
+
+        <script src="js/libs/threejs/shaders/BleachBypassShader.js"></script>
+        <script src="js/libs/threejs/shaders/ConvolutionShader.js"></script>
+        <script src="js/libs/threejs/shaders/CopyShader.js"></script>
+        <script src="js/libs/threejs/shaders/VignetteShader.js"></script>
+
+        <script src="js/libs/threejs/postprocessing/EffectComposer.js"></script>
+        <script src="js/libs/threejs/postprocessing/RenderPass.js"></script>
+        <script src="js/libs/threejs/postprocessing/BloomPass.js"></script>
+        <script src="js/libs/threejs/postprocessing/ShaderPass.js"></script>
+        <script src="js/libs/threejs/postprocessing/MaskPass.js"></script>
+        <script src="js/libs/threejs/postprocessing/SavePass.js"></script>
+
+        <script src="js/core/Globals.js"></script>
+        <script src="js/utils/U3D.js"></script>
+        <script src="js/utils/ProjectLoader.js"></script>
+        <script src="js/utils/SVGReader.js"></script>
+        <script src="js/utils/ObjLoader.js"></script>
+        <script src="js/objects/DebugContainer.js"></script>
+        <script src="js/objects/Floor.js"></script>
+        <script src="js/objects/Decors.js"></script>
+        <script src="js/objects/Ribbons.js"></script>
+        <script src="js/objects/MessageEnd.js"></script>
+        <script src="js/objects/Sapin.js"></script>
+        <script src="js/objects/Star.js"></script>
+        <script src="js/objects/CameraTarget.js"></script>
+        <script src="js/main.js"></script>   
+    </body>
+</html>
