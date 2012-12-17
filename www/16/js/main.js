@@ -151,11 +151,20 @@ var Application = ( function()
 	Application.prototype.start = function start()
 	{
 		this.audio.play();
+		this.audio.addEventListener( "ended", this.onMusicEnded.bind( this ), false );
 		$( "#loaderScreen" ).css( "display", "none" );
 		this.camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
 		this.part = 1;
 
 		document.addEventListener( "mousemove", this.onDocumentMouseMove.bind( this ), false );
+	}
+
+	Application.prototype.onMusicEnded = function onMusicEnded()
+	{
+		console.log( "qweqeqw" ); 
+		$( "#loaderScreen" ).html( "REPLAY" );
+		$( "#loaderScreen" ).css( "display", "block" );
+		$( "#loaderScreen" ).click( function() { window.location.reload(); } );
 	}
 
 	Application.prototype.createLights = function createLights()
