@@ -36,6 +36,10 @@
                 line-height: 100px;
                 margin-top: 100px;
                 cursor: pointer;
+                transition: opacity 1s;
+                -moz-transition: opacity 1s; /* Firefox 4 */
+                -webkit-transition: opacity 1s; /* Safari and Chrome */
+                -o-transition: opacity 1s; /* Opera */
             }
             #heightmap
             {
@@ -181,8 +185,7 @@
         <script src="js/libs/signals.min.js"></script>
         <script src="js/libs/threejs/three.js"></script>
         <script src="js/libs/threejs/loaders/OBJLoader.js"></script>
-        <script src="js/libs/audio/songPlayer.js"></script>
-        <script src="js/libs/audio/song.js"></script>
+        <script src="js/libs/tweenlite/TweenlineLite.min.js"></script>
 
         <script src="js/libs/threejs/shaders/BleachBypassShader.js"></script>
         <script src="js/libs/threejs/shaders/ConvolutionShader.js"></script>

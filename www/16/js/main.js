@@ -152,7 +152,8 @@ var Application = ( function()
 	{
 		this.audio.play();
 		this.audio.addEventListener( "ended", this.onMusicEnded.bind( this ), false );
-		$( "#loaderScreen" ).css( "display", "none" );
+		//$( "#loaderScreen" ).css( "display", "none" );
+		$( "#loaderScreen" ).css( "opacity", "0" );
 		this.camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
 		this.part = 1;
 
@@ -163,7 +164,7 @@ var Application = ( function()
 	{
 		console.log( "qweqeqw" ); 
 		$( "#loaderScreen" ).html( "REPLAY" );
-		$( "#loaderScreen" ).css( "display", "block" );
+		$( "#loaderScreen" ).css( "opacity", "1" );
 		$( "#loaderScreen" ).click( function() { window.location.reload(); } );
 	}
 
@@ -419,12 +420,16 @@ var Application = ( function()
 
 		var percentX = event.clientX / this.WIDTH
 		  , percentY = event.clientY / this.HEIGHT;
+
 		if( this.part < 3 )
 		{
-			this.camera.position.y = 30 - percentY * 18;
-			this.camera.rotation.x = -2.6 - percentY * .3;
+			var dy = ( ( 30 - percentY * 18 )  - this.camera.position.y ) * .07;
+			this.camera.position.y += dy;
+			var rdx = ( ( -2.6 - percentY * .3 ) - this.camera.rotation.x ) * .07;
+			this.camera.rotation.x += rdx;
 
-			this.camera.position.z = -40 + percentX * 20;
+			var dz = ( ( -40 + percentX * 20 ) - this.camera.position.z ) * .07;
+			this.camera.position.z += dz;
 		}
 		else
 		{
