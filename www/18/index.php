@@ -48,7 +48,7 @@
         <link rel="stylesheet" href="../css/content.css" type="text/css" media="screen">
         <link rel="stylesheet" href="../css/header.css" type="text/css" media="screen">
     </head>
-    <body style="overflow:hidden">
+    <body>
         <header style="border-bottom:solid 1px #EEE">
             <div class="center">
                 <h1><a href="/" title="The Christmas Experiments - Home">TCE</a></h1>
