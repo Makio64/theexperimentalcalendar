@@ -1,0 +1,248 @@
+/* Mixins.less
+ * Snippets of reusable CSS to develop faster and keep code readable
+ * ----------------------------------------------------------------- */
+
+
+// Clearfix for clearing floats like a boss h5bp.com/q
+.clearfix() {
+  zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    zoom: 1;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Center-align a block level element
+.center-block() {
+  display: block;
+  margin: 0 auto;
+}
+
+// Webkit-style focus
+// ------------------
+.tab-focus() {
+  // Default
+  outline: thin dotted;
+  // Webkit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+// Sizing shortcuts
+.size(@height: 5px, @width: 5px) {
+  height: @height;
+  width: @width;
+}
+
+// Input placeholder text
+.placeholder(@color: @grayLight) {
+  :-moz-placeholder {
+    color: @color;
+  }
+  ::-webkit-input-placeholder {
+    color: @color;
+  }
+}
+
+// Font Stacks
+#font {
+  .face(@size: 20px, @lineHeight: auto) {
+    font-family: 'mrmoustache', serif;
+    font-size: @size;
+    line-height: @lineHeight;
+  }
+}
+
+// Grid System
+.fixed-container() {
+  width: @siteWidth;
+  margin-left: auto;
+  margin-right: auto;
+  .clearfix();
+}
+.columns(@columnSpan: 1) {
+  width: (@gridColumnWidth * @columnSpan) + (@gridGutterWidth * (@columnSpan - 1));
+}
+.offset(@columnOffset: 1) {
+  margin-left: (@gridColumnWidth * @columnOffset) + (@gridGutterWidth * (@columnOffset - 1)) + @extraSpace;
+}
+// Necessary grid styles for every column to make them appear next to each other horizontally
+.gridColumn() {
+  display: inline;
+  float: left;
+  margin-left: @gridGutterWidth;
+}
+// makeColumn can be used to mark any element (e.g., .content-primary) as a column without changing markup to .span something
+.makeColumn(@columnSpan: 1) {
+  .gridColumn();
+  .columns(@columnSpan);
+}
+
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+// Border Radius
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Transitions
+.animation(@transition) {
+  animation: @transition;
+  -moz-animation: @transition;
+  -webkit-animation: @transition;
+  -o-animation: @transition;
+}
+
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -ms-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
+}
+
+// Transformations
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+     -moz-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees);
+       -o-transform: rotate(@degrees);
+          transform: rotate(@degrees);
+}
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+     -moz-transform: scale(@ratio);
+      -ms-transform: scale(@ratio);
+       -o-transform: scale(@ratio);
+          transform: scale(@ratio);
+}
+.translate(@x: 0, @y: 0) {
+  -webkit-transform: translate(@x, @y);
+     -moz-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y);
+       -o-transform: translate(@x, @y);
+          transform: translate(@x, @y);
+}
+.skew(@x: 0, @y: 0) {
+  -webkit-transform: translate(@x, @y);
+     -moz-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y);
+       -o-transform: translate(@x, @y);
+          transform: translate(@x, @y);
+}
+.skew(@x: 0, @y: 0) {
+  -webkit-transform: skew(@x, @y);
+     -moz-transform: skew(@x, @y);
+      -ms-transform: skew(@x, @y);
+       -o-transform: skew(@x, @y);
+          transform: skew(@x, @y);
+}
+
+// Background clipping
+// Heads up: FF 3.6 and under need "padding" instead of "padding-box"
+.background-clip(@clip) {
+  -webkit-background-clip: @clip;
+     -moz-background-clip: @clip;
+          background-clip: @clip;
+}
+
+// Background sizing
+.background-size(@size){
+  -webkit-background-size: @size;
+     -moz-background-size: @size;
+       -o-background-size: @size;
+          background-size: @size;
+}
+
+
+// Box sizing
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+     -moz-box-sizing: @boxmodel;
+          box-sizing: @boxmodel;
+}
+
+// User select
+// For selecting text on the page
+.user-select(@select) {
+  -webkit-user-select: @select;
+     -moz-user-select: @select;
+       -o-user-select: @select;
+          user-select: @select;
+}
+
+// Resize anything
+.resizable(@direction: both) {
+  resize: @direction; // Options: horizontal, vertical, both
+  overflow: auto; // Safari fix
+}
+
+// CSS3 Content Columns
+.content-columns(@columnCount, @columnGap: @gridColumnGutter) {
+  -webkit-column-count: @columnCount;
+     -moz-column-count: @columnCount;
+          column-count: @columnCount;
+  -webkit-column-gap: @columnGap;
+     -moz-column-gap: @columnGap;
+          column-gap: @columnGap;
+}
+
+// Opacity
+.opacity(@opacity: 100) {
+  opacity: @opacity / 100;
+   filter: e(%("alpha(opacity=%d)", @opacity));
+}
+
+// Gradient Bar Colors for buttons and allerts
+.gradientBar(@primaryColor, @secondaryColor) {
+  #gradient > .vertical(@primaryColor, @secondaryColor);
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  border-color: @secondaryColor @secondaryColor darken(@secondaryColor, 15%);
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
+}
+
+// Reset filters for IE
+.reset-filter() {
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+}
+
+// Opacity
+.opacity(@opacity: 100) {
+  filter: e(%("alpha(opacity=%d)", @opacity));
+  -khtml-opacity: @opacity / 100;
+    -moz-opacity: @opacity / 100;
+         opacity: @opacity / 100;
+}
+
+.select(@value) {
+  -webkit-touch-callout: @value;
+  -webkit-user-select: @value;
+  -khtml-user-select: @value;
+  -moz-user-select: @value;
+  -ms-user-select: @value;
+  user-select: @value;
+}
+
+.origin(@x, @y) {
+  transform-origin:@x @y;
+  -ms-transform-origin:@x @y; /* IE 9 */
+  -webkit-transform-origin:@x @y; /* Safari and Chrome */
+  -moz-transform-origin:@x @y; /* Firefox */
+  -o-transform-origin:@x @y; /* Opera */
+}
