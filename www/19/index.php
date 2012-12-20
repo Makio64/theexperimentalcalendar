@@ -22,7 +22,7 @@
         <meta property="og:title" content="The Christmas Experiments - VVVVV !"/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="http://christmasexperiments.com/19/"/>
-        <meta property="og:image" content="http://christmasexperiments.com/img/facebook.jpg"/>
+        <meta property="og:image" content="http://christmasexperiments.com/img/512-App-Icon.png"/>
         <meta property="og:site_name" content="The Christmas Experiments - VVVVV !"/>
         <meta property="og:description" content="VVVVV ! a game made with love by Aurélien Gantier and Catherine Uhlrich for The Christmas Experiments."/>
         <link rel="Shortcut Icon" type="image/ico" href="../img/favicon.png" />
