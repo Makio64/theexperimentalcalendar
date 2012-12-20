@@ -5,34 +5,17 @@
         The Christmas Experiments Project
         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         - The sources are avaible on GitHub : https://github.com/ipfix/theexperimentalcalendar
-           *             ,
-                       _/^\_
-                      <     >
-     *                 /.-.\         *
-              *        `/&\`                   *
-                      ,@.*;@,
-                     /_o.I %_\    *
-        *           (`'--:o(_@;
-                   /`;--.,__ `')             *
-                  ;@`o % O,*`'`&\ 
-            *    (`'--)_@ ;o %'()\      *
-                 /`;--._`''--._O'@;
-                /&*,()~o`;-.,_ `""`)
-     *          /`,@ ;+& () o*`;-';\
-               (`""--.,_0 +% @' &()\
-               /-.,_    ``''--....-'`)  *
-          *    /@%;o`:;'--,.__   __.'\
-              ;*,&(); @ % &^;~`"`o;@();         *
-              /(); o^~; & ().o@*&`;&%O\
-              `"="==""==,,,.,="=="==="`
-           __.----.(\-''#####---...___...-----._
-         '`         \)_`"""""`
-                 .--' ')
-               o(  )_-\
-                 `"""` `
-    -->
+
+        -------------- VVVVV ! 
+
+        @authors
+            - Aurelien Gantier : http://www.arlg.me
+            - Catherine Uhlrich : http://catherineuhlrich.com/
+
+        ---- GIT : https://github.com/arlg/VVVVV
+  -->
     <head>
-        <title>The Christmas Experiments - SNOCKS</title>
+        <title>The Christmas Experiments - VVVVV !</title>
         <meta charset="utf-8">
         <meta name="author" content="Aurelien Gantier / Catherine Uhlrich">
         <meta name="description" content="VVVVV ! a game made with love by Aurélien Gantier and Catherine Uhlrich for The Christmas Experiments.">
@@ -65,7 +48,31 @@
         <iframe style="top:50px" src="http://www.arlg.me/vvvvv"></iframe>
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
         <script type="text/javascript" src="../js/header.js"></script>
-                <script type="text/javascript">
+        <script type="text/javascript">
+            var EXP = window.EXP || {};
+            EXP.Main = {
+                init: function() {
+
+                  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                      
+                     window.location.href="http://www.arlg.me/vvvvv";
+
+                     this.removeToolBar();
+                  }
+                },
+
+                removeToolBar: function() {
+                  setTimeout(scrollTo, 0, 0, 1);
+                }
+
+            };
+
+            $(window).ready(function() {
+                EXP.Main.init();
+            });
+        </script>
+
+  <script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36772924-1']);
