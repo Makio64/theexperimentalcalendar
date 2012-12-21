@@ -9,22 +9,16 @@ scene = new Scene
 clock = +new Date
 drag = new THREE.Vector3
 
-# camera.position.x = 10000
-# camera.lookAt new THREE.Vector3
-
 init = ->
 
     # Setup renderer
     renderer.shadowMapEnabled = yes
     renderer.shadowMapSoft = yes
-    #renderer.shadowMapDebug = yes
     renderer.shadowMapCascade = yes
-    #renderer.shadowMapCullFrontFaces = no
     renderer.setClearColor 0x111111
 
     renderer.gammaInput = yes
     renderer.gammaOutput = yes
-    #renderer.physicallyBasedShading = yes
 
     # Setup camera
     camera.position.z = distance
@@ -73,7 +67,6 @@ mousemove = ( e ) ->
 
     scene.mouse.x = 1.5 * (( width * -0.5 ) + e.pageX);
     scene.mouse.y = 1.5 * (( height * 0.5 ) - e.pageY);
-    #scene.mouse.z = scene.mouse.x
 
     if scene.dragging
         
