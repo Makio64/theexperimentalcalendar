@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>experiment</title>
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+
+		<!-- libs -->
+	
+		<!-- EaselJS -->
+    <script src='lib/easeljs-0.5.0.min.js'></script>
+        <!-- TweenJS -->
+	 <script src='lib/tweenjs-0.3.0.min.js'></script>
+		<!-- PreloadJS -->
+    <script src='lib/preloadjs-0.2.0.min.js'></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+
+  </head>
+
+<body>
+
+<div class="stage">
+    <canvas id="canvas" width='100' height='100'></canvas>
+</div>
+
+
+
+<script src='js/datas.js'></script>
+<script src='js/litho.js'></script>
+
+
+<script type="text/javascript">
+
+	//-----------------------------------------------------------------------------------------------------------------
+	//																								VARS
+	//-----------------------------------------------------------------------------------------------------------------
+
+	var checkEnd = false;
+	var isFirstClick = true;
+	var isPaused = true;
+	var preload;
+	var totalLoaded=0;
+	var btnLoaded=0;
+	var txt;
+	var txt2;
+	var timer;
+
+	var color1 = {initial:{r:20, v:115, b:10}, final:{r:50, v:204, b:130}};
+	var	color2 = {initial:{r:255, v:215, b:0}, final:{r:255, v:130, b:10}};
+	var color3 = {initial:{r:240, v:0, b:0}, final:{r:255, v:255, b:255}};
+	var color4 = {initial:{r:255, v:0, b:60}, final:{r:255, v:130, b:160}};
+	var color5 = {initial:{r:246, v:246, b:246}, final:{r:95, v:225, b:255}};
+
+	var litho= new Array();
+	var menu = new Array();
+	var menuRoll = new Array();
+	var colors= new Array(color1, color2, color3, color4, color5);
+	var points= new Array(points_tree, points_star, points_hat, points_candy ,points_snowman);
+	var size= new Array(2, 1.5, 1.5, 2, 2);
+	var positions= new Array({x:-12, y:44}, {x:-10, y:50}, {x:-12, y:63}, {x:0, y:60}, {x:-12, y:60});
+
+	var index=0;
+	var shapes_num=5;
+
+	var png_ar = [
+					{src:"img/shape1.png", id:"0"},
+					{src:"img/shape2.png", id:"1"},
+					{src:"img/shape3.png", id:"2"},
+					{src:"img/shape4.png", id:"3"},
+					{src:"img/shape5.png", id:"4"}
+				];
+
+				
+	preload = new createjs.PreloadJS();
+	preload.onProgress = handleProgress;
+	preload.onFileLoad = handleFileLoad;
+
+
+	for(var i=0; i<shapes_num; i++){
+		litho.push(new Litho());
+	}
+
+	canvas = $("#canvas").get(0);
+		
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+
+	stage = new createjs.Stage(canvas);
+	stage.enableMouseOver();
+
+    $(document).ready(function(){
+	 
+		txt = new createjs.Text("Pick a shape", "18px Questrial", "#f5f5f5");
+		txt2 = new createjs.Text("Press mouse and move to draw", "18px Questrial", "#f5f5f5");
+		
+        txt.x = (canvas.width/2)-(txt.getMeasuredWidth()/2);
+        txt.y = (canvas.height/2)-100;
+		
+		txt2.x = (canvas.width/2)-(txt2.getMeasuredWidth()/2)-5;
+        txt2.y = txt.y+30;
+
+		var finalY = (canvas.height/2)-50;
+		var final2Y = finalY+30;
+		
+		txt.alpha=0;
+		txt2.alpha=0;
+		
+		stage.addChild(txt);
+		stage.addChild(txt2);
+		
+		timer = new createjs.Shape();
+		stage.addChild(timer);
+		
+		createjs.Tween.get(txt,{loop:false, ignoreGlobalPause:true})
+			.wait(200)
+			.to({alpha:1, y:finalY}, 600, createjs.Ease.quadOut)
+			
+		createjs.Tween.get(txt2,{loop:false, ignoreGlobalPause:true})
+			.wait(400)
+			.to({alpha:1, y:final2Y}, 600, createjs.Ease.quadOut)
+
+		createjs.Ticker.setFPS(60);
+		createjs.Ticker.addListener(stage, false);
+		createjs.Ticker.addListener(window, true);
+		createjs.Ticker.setPaused(true);
+		
+		setDrawListeners();
+		
+		preload.loadManifest(png_ar);
+		
+    });
+	
+	//-----------------------------------------------------------------------------------------------------------------
+	//																								METHODS
+	//-----------------------------------------------------------------------------------------------------------------
+	
+	function setDrawListeners() {
+		stage.onMouseDown = function() {
+			if(isFirstClick){
+				isFirstClick = false;
+				createjs.Tween.removeTweens(txt);
+				createjs.Tween.removeTweens(txt2);
+				stage.removeChild(txt);
+				stage.removeChild(txt2);
+			}
+			if(isPaused){
+				litho[index].init(350, 1, 3, 0.3, colors[index], stage, canvas, positions[index].x, positions[index].y, points[index], randomNum(size[index]-.5,size[index]));
+				litho[index].initCenter();
+				createjs.Ticker.setPaused(false);
+				isPaused=false;
+			}
+		}
+			
+		stage.onMouseUp = function() {
+			if(!isPaused){
+				timer.graphics.clear();
+				litho[index].fade();
+				createjs.Ticker.setPaused(true);
+				isPaused=true;
+			}
+		}
+	}
+		
+	function removeDrawListeners() {
+		stage.onMouseDown = null;
+		stage.onMouseUp = null;
+	}
+	
+	function randomNum(min, max)
+	{
+		return min + Math.random() * (max - min);
+	}
+
+	//-----------------------------------------------------------------------------------------------------------------
+	//																								EVENT HANDLERS
+	//-----------------------------------------------------------------------------------------------------------------
+	
+	function tick() {
+		console.log("tick");
+		
+		litho[index].render();
+		
+		timer.x = stage.mouseX+25;
+		timer.y = stage.mouseY+10;
+		timer.graphics.clear();
+		timer.graphics.beginFill("#505050").moveTo(0, 0).arc(0, 0, 6, -Math.PI/2, (2 * Math.PI) * ((litho[index].ims)/350)-Math.PI/2 );
+		
+		stage.update();
+		
+	}
+	
+	function loadGfx(e)
+	{
+		btn = new createjs.Bitmap(btnSrc);
+		btn.x = canvas.width/2;
+		btn.y = 0;
+
+		stage.addChild(btn);
+		stage.update(); 
+	}
+	
+	function handleProgress(event) {
+		
+	}
+
+	function handleFileLoad(event) {
+		var img = new Image();
+		img.src = event.src;
+		img.id = event.id;
+		img.onload = handleLoadComplete;
+	}
+	
+	function handleLoadComplete(event) {
+		var btn = new createjs.Bitmap(this);
+		btn.id = this.id;
+		btn.x = Math.round( ((canvas.width/2)- (shapes_num*40)/2 )  + (40*totalLoaded) );
+		btn.y = 0;
+		
+		var bgroll = new createjs.Shape();
+		bgroll.graphics.beginFill("#00993d").drawRect(0,0,40,40);
+		bgroll.x = btn.x;
+		bgroll.y = btn.y;
+		menuRoll.push(bgroll);
+		stage.addChild(bgroll);
+		
+		var hitArea = new createjs.Shape();
+		hitArea.graphics.beginFill("#000000").drawRect(0,0,40,40);
+		
+		btn.hitArea = hitArea;
+		btn.onClick = onBtClick;
+		btn.onMouseOver = onBtMouseOver;
+		btn.onMouseOut = onMouseOut;
+		menu.push(btn);
+		stage.addChild(btn);
+		
+		totalLoaded ++;
+
+		if (totalLoaded == png_ar.length) {
+			
+			menu[0].onClick();
+			stage.update();
+		}
+
+	}
+	
+	function onBtClick(event) {
+		for(var i=0; i<menuRoll.length; i++){
+			menuRoll[i].graphics.clear();
+			menuRoll[i].graphics.beginFill("#00993d").drawRect(0,0,40,40);
+		}
+		index = this.id;
+		menuRoll[index].graphics.clear();
+		menuRoll[index].graphics.beginFill("#e60000").drawRect(0,0,40,40);
+		stage.update();
+	}
+	
+	function onBtMouseOver(event) {
+		document.body.style.cursor='pointer';
+		removeDrawListeners();
+	}
+	
+	function onMouseOut(event) {
+		document.body.style.cursor='default';
+		setDrawListeners();
+
+	}
+	
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+body { 
+	overflow:hidden; 
+	background: #1a1a1a; 
+	padding:0; 
+	margin : 0; 
+	min-height:100%; 
+
+}
+
+canvas { 
+	padding: 0; 
+	margin: 0; 
+}
+
+/*@font-face { font-family: 'Comfortaa' ; src: url('Comfortaa-Regular.ttf'); }*/
