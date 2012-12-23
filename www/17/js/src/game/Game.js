@@ -27,7 +27,9 @@ function Game(ctx, wrapper)
 	});
 
 	// ui
-	$("#score, #time, #life").css("opacity", 1);
+	setTimeout(function() {
+		$("#score, #time, #life").css("opacity", 1);
+	}, 100);
 
 	// slicer
 	this._slicer = new Slicer(wrapper);
@@ -253,7 +255,6 @@ Game.prototype.draw = function ()
 		this._t += 0.01;
 
 		this._ctx.lineWidth = 1;
-		//this._ctx.strokeStyle = "#FFFFFF";
 
 		var sl = this._shapes.length;
 		var available = true;
@@ -284,7 +285,6 @@ Game.prototype.draw = function ()
 						$(this._lifeElmt.find(".heart-container")[3 - this._life]).find(".heart-full").css("opacity", 0);
 
 						this._life--;
-
 
 						if(!this._life)
 						{
