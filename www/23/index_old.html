@@ -38,7 +38,7 @@
         <meta name="description" content="Never Seen The Sky made with love by Steven Wittens for The Christmas Experiments.">
         <meta property="og:title" content="The Christmas Experiments - Never Seen The Sky"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:url" content="http://christmasexperiments.com/23/">
+        <meta property="og:url" content="http://christmasexperiments.com/23/>
         <meta property="og:image" content="http://christmasexperiments.com/img/facebook.jpg"/>
         <meta property="og:site_name" content="The Christmas Experiments - Never Seen The Sky"/>
         <meta property="og:description" content="Never Seen The Sky made with love by Steven Wittens for The Christmas Experiments."/>
@@ -48,7 +48,7 @@
         <link rel="stylesheet" href="../css/content.css" type="text/css" media="screen">
         <link rel="stylesheet" href="../css/header.css" type="text/css" media="screen">
     </head>
-    <body style="overflow:hidden; min-height:100%; height:100%;">
+    <body>
         <header>
             <div class="center">
                 <h1><a href="/" title="The Christmas Experiments - Home">TCE</a></h1>
@@ -64,18 +64,10 @@
                 </ul>
             </div>
         </header>
-        <iframe style="overflow:hidden; margin-top:50px" src="./experiment.html"></iframe>
+        <iframe src="./experiment.html"></iframe>
         <!-- Src in Main.js -->
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
         <script type="text/javascript" src="../js/header.js"></script>
-        <script type="text/javascript">
-          $(document).ready(function(){
-            $(window).resize(function() {
-              $("iframe").css("height", $(window).innerHeight() - 51 +"px");
-            });
-            $("iframe").css("height", $(window).innerHeight() - 51 +"px");
-          });
-        </script>
                 <script type="text/javascript">
 
   var _gaq = _gaq || [];
