@@ -181,6 +181,17 @@ Shape.prototype.draw = function (w, h, slices)
 		}
 
 		// update and draw anchors
+		if(this.bomb)
+		{
+			this._ctx.strokeStyle =
+			this._ctx.fillStyle = Math.random() > 0.5 ? "#AA0000" : "#FF0000";
+		}
+		else
+		{
+			this._ctx.fillStyle =
+			this._ctx.strokeStyle = this.color;
+		}
+
 		var pa, a;
 		var la = this.anchors.length;
 		if(this.displayed)
@@ -236,10 +247,6 @@ Shape.prototype.draw = function (w, h, slices)
 		}
 
 		// drawing
-		if(this.bomb)
-			this._ctx.strokeStyle = Math.random() > 0.5 ? "#AA0000" : "#FF0000";
-		else
-			this._ctx.strokeStyle = this.color;
 
 		this._ctx.beginPath();
 
