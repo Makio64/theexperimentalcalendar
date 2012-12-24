@@ -74,7 +74,7 @@ Slicer.prototype.draw = function(ctx)
 		}
 
 		var r = l ? 4 / l : 1;
-		if(this._t >= r && l)
+		if((l && this._t >= r) || l > 3)
 		{
 			this.slices.shift();
 			this._t = 0;
