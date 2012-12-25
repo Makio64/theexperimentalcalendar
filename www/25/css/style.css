@@ -1,0 +1,57 @@
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video{ display: block; }
+mark, rp, rt, ruby, summary, time{ display: inline }
+
+/* Site-wide properties ======================================================== */
+html {
+    height: 100%;
+	background:#FFF;
+}
+
+body {
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+#wrapperbackground{
+	z-index: 9
+	height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+}
+
+#wrapper{
+	z-index: 10;
+	height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+}
+
+#popup{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left: -410px;
+	margin-top: -220px;
+	width: 820px;
+	height: 440px;
+	background: #F7F7F7;
+}
+
+#popup canvas{
+	text-align: center;
+	margin: auto;
+}
+
+#background{
+	min-height: 100%;
+	top:0;
+	left: 0;
+	width:100%;
+	z-index: 1;
+}

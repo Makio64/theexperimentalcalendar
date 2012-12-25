@@ -1,0 +1,28 @@
+fs = require 'fs'
+
+{print} = require 'sys'
+{spawn} = require 'child_process'
+
+build = (callback) ->
+  coffee = spawn 'coffee.cmd', ['-j', 'main.js', '-clo', 'js', 'src']
+  coffee.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  coffee.stdout.on 'data', (data) ->
+    print data.toString()
+  coffee.on 'exit', (code) ->
+    callback?() if code is 0
+
+task 'build', 'Build js/ from src/', ->
+  build()
+
+task 'watch', 'Watch src/ for changes', ->
+  coffee = spawn 'coffee.cmd', ['-w', '-j', 'main.js', '-clo', 'js', 'src']
+  coffee.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  coffee.stdout.on 'data', (data) ->
+    print data.toString()
+
+task 'open', 'Open index.html', ->
+  # First open, then watch
+  spawn 'open', 'index.html'
+  invoke 'watch'
