@@ -1,8 +1,8 @@
 
 class Scene
 
-    currentPosition: new THREE.Vector3( 0, 0, -100 )
-    nextPosition: new THREE.Vector3( 0, 0, -200 )
+    currentPosition: new THREE.Vector3( 0, 0, -150 )
+    nextPosition: new THREE.Vector3( 0, 0, -300 )
     oldPosition: new THREE.Vector3( 0, 0, 0 )
 
     constructor: ->
@@ -43,13 +43,13 @@ class Scene
 
         @ambient = new THREE.AmbientLight 0xffffff
 
-        @spot = new THREE.SpotLight 0xffffff, 2.0, 0, PI, 60
-        @spot.position.set 500, 3000, 2000
+        @spot = new THREE.SpotLight 0xffffff, 2.0, 0, PI*0.5, 50
+        @spot.position.set 500, 3000, 2500
         @spot.lookAt new THREE.Vector3()
 
         #@spot.shadowCameraVisible = true;
-        @spot.shadowMapHeight = 512 * 2
-        @spot.shadowMapWidth = 512 * 2
+        @spot.shadowMapHeight = 512 * 8
+        @spot.shadowMapWidth = 512 * 8
         @spot.shadowDarkness = 0.25
         @spot.castShadow = yes
 

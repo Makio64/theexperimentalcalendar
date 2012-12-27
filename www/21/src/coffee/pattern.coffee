@@ -250,6 +250,7 @@ Pattern = do ->
             ctx.translate width * 0.5, height * 0.5
             ctx.scale 8, 8
             ctx.rotate (if chance 0.5 then 1 else -1) * (random 0.2, 0.3)
+            ctx.globalAlpha = 0.9
             
             ctx.font = '20px; Arial+Bold'
             ctx.textBaseline = 'middle'

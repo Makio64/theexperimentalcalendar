@@ -5,12 +5,12 @@ class Paper extends THREE.Object3D
     rows: 10
     bump: Bump.texture
     environment: THREE.ImageUtils.loadTextureCube [
-        'img/skybox/px.jpg',
-        'img/skybox/nx.jpg',
-        'img/skybox/py.jpg',
-        'img/skybox/ny.jpg',
-        'img/skybox/pz.jpg',
-        'img/skybox/nz.jpg'
+        'build/img/skybox/px.jpg',
+        'build/img/skybox/nx.jpg',
+        'build/img/skybox/py.jpg',
+        'build/img/skybox/ny.jpg',
+        'build/img/skybox/pz.jpg',
+        'build/img/skybox/nz.jpg'
     ]
 
     constructor: ->
@@ -30,7 +30,7 @@ class Paper extends THREE.Object3D
             bumpMap: @bump
             perPixel: no
             wrapAround: true
-            bumpScale: 1.5
+            bumpScale: 0.5
             metal: yes
             #wireframe: true
             envMap: @environment
@@ -104,8 +104,8 @@ class Paper extends THREE.Object3D
 
         do Pattern.draw
 
-        @material.bumpScale = random 0.5, 2
-        @material.reflectivity = random 0.2, 1.0
+        @material.bumpScale = random 0.5, 1.5
+        @material.reflectivity = random 0.2, 0.9
         
         @material.bump = new THREE.Texture Bump.canvas
         @material.bump.needsUpdate = yes

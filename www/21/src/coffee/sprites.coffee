@@ -28,7 +28,7 @@ Sprites = do ->
 
             canvas[ name ] = img
 
-    image.src = 'img/sprites.png'
+    image.src = 'build/img/sprites.png'
 
     # API
 
