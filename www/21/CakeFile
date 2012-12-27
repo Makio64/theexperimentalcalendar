@@ -1,0 +1,139 @@
+
+###
+--------------------------------------------------
+    
+    Configuration
+
+--------------------------------------------------
+###
+
+# Source directory
+source = 'src/coffee'
+
+# Output directory & JS file
+output = 'build/js/main.js'
+other  = 'build/js/deps.js'
+
+# Options passed to CoffeeScript the compiler (e.g. --bare)
+opts   = '--lint'
+
+# Files (in order) to concatenate
+files  = [
+    'bump'
+    'core'
+    'paper'
+    'pattern'
+    'physics'
+    'scene'
+    'shapes'
+    'sprites'
+    'themes'
+    'utils'
+    'main'
+]
+
+deps  = [
+    'src/js/postprocessing/EffectComposer.js'
+    'src/js/postprocessing/FilmPass.js'
+    'src/js/postprocessing/MaskPass.js'
+    'src/js/postprocessing/RenderPass.js'
+    'src/js/postprocessing/ShaderPass.js'
+    'src/js/shaders/CopyShader.js'
+    'src/js/shaders/FilmShader.js'
+]
+
+###
+--------------------------------------------------
+    
+    Dependancies
+
+--------------------------------------------------
+###
+
+fs = require 'fs'
+util = require 'util'
+{exec} = require 'child_process'
+try growl = require 'growl'
+
+###
+--------------------------------------------------
+    
+    Concatenates and minifies sources
+
+--------------------------------------------------
+###
+
+task 'build', 'Concatenates, compiles and minifies sources', ->
+
+    content = (fs.readFileSync "#{source}/#{file}.coffee", 'utf8' for file in files).join '\n\n'
+    merged = output.replace '\.js', '\.coffee'
+
+    fs.writeFile merged, content, 'utf8', ( error ) ->
+
+        throw error if error
+
+        exec "coffee -c #{opts} #{merged}", ( error ) ->
+
+            if error then throw error else
+
+                if fs.existsSync merged then fs.unlink merged, ( error ) -> throw error if error
+
+            grrrr "Project compiled into: #{output}"
+
+            exec "uglifyjs -o #{output} #{output}", ( error ) ->
+
+                throw error if error
+
+###
+--------------------------------------------------
+    
+    Concatenates and minifies dependancies
+
+--------------------------------------------------
+###
+
+task 'deps', 'Concatenates and minifies dependancies', ->
+
+    fs.writeFile other, (fs.readFileSync file, 'utf8' for file in deps).join( '\n\n' ), 'utf8', ( error ) ->
+
+        throw error if error
+        
+        exec "uglifyjs -o #{other} #{other}", ( error ) ->
+
+            throw error if error
+
+###
+--------------------------------------------------
+    
+    Watches sources and dependancies for changes
+
+--------------------------------------------------
+###
+
+task 'watch', 'Rebuilds source and dependancies on changes', ->
+
+    invoke 'build'
+
+    watch = ( file, task = 'build' ) ->
+
+        fs.watchFile file, ( now, old ) ->
+
+            invoke task if +now.mtime isnt +old.mtime
+            util.log "Saw change in #{file}"
+
+    watch "#{source}/#{file}.coffee", 'build' for file in files
+    watch file, 'deps' for file in deps
+
+###
+--------------------------------------------------
+    
+    Growl proxy
+
+--------------------------------------------------
+###
+
+grrrr = ( message = '' ) ->
+
+    options = title: 'CoffeeScript'
+    growl?.notify message, options
+    util.log message
